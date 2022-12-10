@@ -1,10 +1,15 @@
 package GwenShop.com.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name="Cart")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Cart implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -12,32 +17,8 @@ public class Cart implements Serializable {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "userId")
-    private int userId;
-
-    /* Tạo quan hệ many to one với users */
-
+    /* Tạo quan hệ */
     @ManyToOne
     @JoinColumn(name="userId")
     private Users user;
-
-    /* Constructor */
-    public Cart() { }
-
-    //Getter - Setter
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 }

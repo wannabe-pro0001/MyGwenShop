@@ -1,16 +1,16 @@
 package GwenShop.com.controller.User;
 
-import gwenshop.com.Service.ICartItemService;
-import gwenshop.com.Service.ICartService;
-import gwenshop.com.Service.IProductService;
-import gwenshop.com.Service.IUserService;
-import gwenshop.com.Service.Impl.CartItemServiceImpl;
-import gwenshop.com.Service.Impl.CartServiceImpl;
-import gwenshop.com.Service.Impl.ProductServiceImpl;
-import gwenshop.com.Service.Impl.UserServiceImpl;
-import gwenshop.com.model.Cart;
-import gwenshop.com.model.CartItem;
-import gwenshop.com.model.Product;
+import GwenShop.com.Service.ICartItemService;
+import GwenShop.com.Service.ICartService;
+import GwenShop.com.Service.IProductService;
+import GwenShop.com.Service.IUserService;
+import GwenShop.com.Service.Impl.CartItemServiceImpl;
+import GwenShop.com.Service.Impl.CartServiceImpl;
+import GwenShop.com.Service.Impl.ProductServiceImpl;
+import GwenShop.com.Service.Impl.UserServiceImpl;
+import GwenShop.com.entity.Cart;
+import GwenShop.com.entity.CartItem;
+import GwenShop.com.entity.Product;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

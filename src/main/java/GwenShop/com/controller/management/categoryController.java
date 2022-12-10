@@ -22,10 +22,9 @@ public class categoryController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String url = request.getRequestURL().toString();
-        EntityManager entityManager = JPAConfig.getEntityManager();
         if(url.contains("category/load-table"))
         {
-            findAll(response, entityManager);
+            findAll(response);
         }
         else {
             RequestDispatcher rq = request.getRequestDispatcher("views/admin/category.jsp");
@@ -38,7 +37,7 @@ public class categoryController extends HttpServlet {
 
     }
 
-    public void findAll(HttpServletResponse response, EntityManager entityManager) throws IOException {
+    public void findAll(HttpServletResponse response) throws IOException {
         response.setCharacterEncoding("UTF-8");
         List<Category> categories = categoryDAO.findAll();
         PrintWriter out = response.getWriter();

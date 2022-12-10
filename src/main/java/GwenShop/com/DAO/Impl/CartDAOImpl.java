@@ -15,7 +15,11 @@ public class CartDAOImpl implements ICartDAO {
 
     @Override
     public boolean existCart(int userId) {
-        return false;
+        boolean isCart = enma.createQuery("FROM Cart C WHERE C.users.id = :userId")
+                .setParameter("userId", userId)
+                .getResultList()
+                .size() > 0 ? true : false;
+        return isCart;
     }
 
     @Override
