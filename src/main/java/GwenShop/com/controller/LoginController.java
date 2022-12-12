@@ -1,6 +1,7 @@
 package GwenShop.com.controller;
 
-import gwenshop.com.util.Constants;
+
+import GwenShop.com.util.Constants;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

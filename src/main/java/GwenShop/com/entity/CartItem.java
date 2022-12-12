@@ -28,7 +28,4 @@ public class CartItem implements Serializable {
     @ManyToOne
     @JoinColumn(name = "productId")
     private Product product;
-
-    @OneToMany(mappedBy = "cartItem")
-    private List<CartItemDetail> cartItemDetails;
 }

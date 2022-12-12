@@ -8,25 +8,22 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(name = "ProductDetail")
+@Table(name = "ProductSize")
 @NoArgsConstructor
-public class ProductDetail {
+public class ProductSize {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
 
-    @Column(name = "color")
-    private String color;
-
-    @Column(name = "size")
-    private String size;
+    @Column(name = "name")
+    private String name;
 
     //Tạo quan hệ
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "productID")
     private Product product;
 
-    @OneToMany(mappedBy = "ProductDetail")
-    private List<CartItemDetail> cartItemDetail;
+    @OneToMany(mappedBy = "ProductSize")
+    private List<wishListItem> wishListItem;
 }

@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name="Cart")
@@ -21,4 +22,11 @@ public class Cart implements Serializable {
     @ManyToOne
     @JoinColumn(name="userId")
     private Users user;
+
+    @OneToMany(mappedBy = "cart")
+    private List<CartItem> cartItems;
+
+    public Cart(Users user){
+        this.user = user;
+    }
 }

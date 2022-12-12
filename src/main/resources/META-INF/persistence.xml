@@ -10,8 +10,12 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>GwenShop.com.DAO.Impl.CartDAOImpl</class>
         <class>GwenShop.com.DAO.Impl.CartItemDAOImpl</class>
+        <class>GwenShop.com.DAO.Impl.CategoryDAOImpl</class>
+        <class>GwenShop.com.DAO.Impl.OrderDAOImpl</class>
+        <class>GwenShop.com.DAO.Impl.ProductDAOImpl</class>
+        <class>GwenShop.com.DAO.Impl.UserDAOImpl</class>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=GwenShop" /><!-- user=sa;password=1234567@a$ -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=MyGwenShop" /><!-- user=sa;password=1234567@a$ -->
             <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
             <property name="javax.persistence.jdbc.user" value="sa" />
             <property name="javax.persistence.jdbc.password" value="123456" />

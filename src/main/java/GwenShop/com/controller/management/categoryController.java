@@ -55,7 +55,7 @@ public class categoryController extends HttpServlet {
                     "</td>\n" +
                     "<td class=\"col__id-category\">"+c.getId()+"</td>\n" +
                     "<td class=\"col__category-name\">"+c.getName()+"</td>\n" +
-                    "<td class=\"col__category-productAmount\">"+c.getAmount()+"</td> \n" +
+                    //"<td class=\"col__category-productAmount\">"+c.getAmount()+"</td> \n" +
                     "<td>\n" +
                     "   <button class=\"btn_Edit\">\n" +
                     "           <i class=\"fa-solid fa-pen-to-square\" style=\"color: white;\"></i>\n" +

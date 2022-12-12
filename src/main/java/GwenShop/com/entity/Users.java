@@ -33,7 +33,7 @@ public class Users implements Serializable {
     @Column(name = "addr")
     private String addr;
 
-    @Column(name = "phonenumber")
+    @Column(name = "phoneNo")
     private String phoneNumber;
 
     @Column(name = "salary")
@@ -48,4 +48,16 @@ public class Users implements Serializable {
     //Tạo quan hệ
     @OneToMany(mappedBy = "user")
     private List<Cart> carts;
+
+    @OneToMany(mappedBy = "user")
+    private List<wishListItem> wishListItems;
+
+    @OneToMany(mappedBy="user")
+    private List<Review> reviews;
+
+    @OneToMany(mappedBy = "emp_id")
+    private List<Blog> blogs;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 }

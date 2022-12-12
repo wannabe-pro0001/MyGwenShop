@@ -8,26 +8,23 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "CartItemDetail")
+@Table(name = "wishListItem")
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
-public class CartItemDetail {
+public class wishListItem {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "amount")
-    private int amount;
-
     //Tạo quan hệ
     @ManyToOne
-    @JoinColumn(name = "cartItem_id")
-    private CartItem cartItem;
+    @JoinColumn(name = "userID")
+    private Users user;
 
     @ManyToOne
-    @JoinColumn(name = "ProductDetailId")
-    private ProductDetail ProductDetail;
+    @JoinColumn(name = "prodID")
+    private Product product;
 }

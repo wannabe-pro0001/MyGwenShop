@@ -6,26 +6,31 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.sql.Date;
 
-@Entity
-@Table(name = "Category")
-@NamedQuery(name="Category.findAll", query = "SELECT c FROM Category c")
+
 @Getter
 @Setter
 @NoArgsConstructor
-public class Category implements Serializable {
+@Entity
+@Table(name = "review")
+public class Review implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "category_name")
-    private String name;
-    @Column(name = "descript")
-    private String description;
+    @Column(name = "review_text")
+    private String review_text;
+    @Column(name ="create_at")
+    private Date create_at;
 
     //Tạo quan hệ
-    @OneToMany(mappedBy = "category")
-    private List<Product> products;
+    @ManyToOne
+    @JoinColumn(name = "userID")
+    private Users user;
+    @ManyToOne
+    @JoinColumn(name = "prodID")
+    private Product product;
 }

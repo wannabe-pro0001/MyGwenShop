@@ -22,7 +22,7 @@ public class ProductImage implements Serializable {
 
     //Tạo quan hệ
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "productId")
     private Product product;
 
     //Constructor
