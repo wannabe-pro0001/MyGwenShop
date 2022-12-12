@@ -1,5 +1,6 @@
 package GwenShop.com.entity;
 
+import GwenShop.com.entity.CompositeKey.OrderItemId;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,22 +13,20 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity
 @Table(name = "OrderItem")
+@IdClass(OrderItemId.class)
 public class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
 
     @Column(name = "amount")
     private int amount;
 
     //________
+    @Id
     @ManyToOne
     @JoinColumn(name = "OrderId")
     private Order order;
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "ProdID")
     private Product product;

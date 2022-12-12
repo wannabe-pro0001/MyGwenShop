@@ -23,7 +23,4 @@ public class ProductSize {
     @ManyToOne
     @JoinColumn(name = "productID")
     private Product product;
-
-    @OneToMany(mappedBy = "ProductSize")
-    private List<wishListItem> wishListItem;
 }

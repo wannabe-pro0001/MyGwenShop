@@ -40,7 +40,7 @@ public class Order implements Serializable {
     private Users user;
 
     @ManyToOne
-    @Column(name = "emp_id")
+    @JoinColumn(name = "emp_id")
     private Users employee;
 
     @OneToMany(mappedBy = "order")

@@ -3,35 +3,64 @@ package GwenShop.com.Service.Impl;
 import GwenShop.com.DAO.IUserDAO;
 import GwenShop.com.DAO.Impl.UserDAOImpl;
 import GwenShop.com.Service.IUserService;
-import GwenShop.com.entity.Users;
+import GwenShop.com.entity.*;
 
 import java.util.List;
 
 public class UserServiceImpl implements IUserService {
-	IUserDAO userDao = new UserDAOImpl();
+	IUserDAO userDAO = new UserDAOImpl();
 
 	@Override
 	public void createAccount(Users user) {
-		userDao.createAccount(user);
+		userDAO.createAccount(user);
 	}
 
 	@Override
 	public void update(Users user) {
-		userDao.update(user);
+		userDAO.update(user);
+	}
+
+	@Override
+	public void delete(int userID) {
+		userDAO.delete(userID);
+	}
+
+	@Override
+	public List<Users> findAll() {
+		return userDAO.findAll();
 	}
 
 	@Override
 	public Users findByEmail(String email) {
-		return userDao.findByEmail(email);
+		return userDAO.findByEmail(email);
 	}
 
 	@Override
 	public List<Users> findUsersByName(String searchString) {
-		return userDao.findUsersByName(searchString);
+		return userDAO.findUsersByName(searchString);
 	}
 
 	@Override
 	public Users findById(int userid) {
-		return userDao.findById(userid);
+		return userDAO.findById(userid);
+	}
+
+	@Override
+	public void addWishList(Product product, Users user) {
+		userDAO.addWishList(product, user);
+	}
+
+	@Override
+	public void removeWishList(WishListItem item, Users user) {userDAO.removeWishList(item, user);}
+
+	@Override
+	public void addReview(int userID, int prodID, String text) {userDAO.addReview(userID, prodID, text);}
+
+	@Override
+	public void removeReview(Review review) {userDAO.removeReview(review);}
+
+	@Override
+	public String checkDelivery(Order order) {
+		return userDAO.checkDelivery(order);
 	}
 }

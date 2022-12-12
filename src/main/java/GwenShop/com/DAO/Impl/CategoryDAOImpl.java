@@ -2,10 +2,12 @@ package GwenShop.com.DAO.Impl;
 
 import GwenShop.com.DAO.ICategoryDAO;
 import GwenShop.com.entity.Category;
+import GwenShop.com.entity.Users;
 import GwenShop.com.util.JPAConfig;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class CategoryDAOImpl implements ICategoryDAO {
@@ -71,7 +73,8 @@ public class CategoryDAOImpl implements ICategoryDAO {
 
     @Override
     public List<Category> findAll() {
-        return null;
+        TypedQuery<Category> query= enma.createNamedQuery("Category.findAll", Category.class);
+        return query.getResultList();
     }
 
     @Override
