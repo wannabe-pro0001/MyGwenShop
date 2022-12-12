@@ -26,5 +26,5 @@ public class Blog implements Serializable {
 
     @ManyToOne
     @JoinColumn(name="emp_id")
-    private int emp_id;
+    private Users emp_id;
 }

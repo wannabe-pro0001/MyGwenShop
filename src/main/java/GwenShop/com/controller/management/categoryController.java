@@ -24,7 +24,20 @@ public class categoryController extends HttpServlet {
         String url = request.getRequestURL().toString();
         if(url.contains("category/load-table"))
         {
-            findAll(response);
+            findAll(request, response);
+        }
+        else {
+            RequestDispatcher rq = request.getRequestDispatcher("views/shop/category.jsp");
+            rq.forward(request,response);
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String url = request.getRequestURL().toString();
+        if(url.contains("category/load-table"))
+        {
+            findAll(request, response);
         }
         else {
             RequestDispatcher rq = request.getRequestDispatcher("views/admin/category.jsp");
@@ -32,40 +45,16 @@ public class categoryController extends HttpServlet {
         }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    public void findAll(HttpServletResponse response) throws IOException {
-        response.setCharacterEncoding("UTF-8");
-        List<Category> categories = categoryDAO.findAll();
-        PrintWriter out = response.getWriter();
-        out.println("<thead><tr>\n" +
-                "    <th></th>\n" +
-                "    <th>ID</th>\n" +
-                "    <th>Danh mục</th>\n" +
-                "    <th>Tổng sản phẩm</th>\n" +
-                "    <th></th>\n" +
-                "</tr><thead><tbody>");
-        for(Category c: categories){
-            out.println("<tr>\n" +
-                    "<td>\n" +
-                    "     <input type=\"checkbox\">\n" +
-                    "</td>\n" +
-                    "<td class=\"col__id-category\">"+c.getId()+"</td>\n" +
-                    "<td class=\"col__category-name\">"+c.getName()+"</td>\n" +
-                    //"<td class=\"col__category-productAmount\">"+c.getAmount()+"</td> \n" +
-                    "<td>\n" +
-                    "   <button class=\"btn_Edit\">\n" +
-                    "           <i class=\"fa-solid fa-pen-to-square\" style=\"color: white;\"></i>\n" +
-                    "   </button>\n" +
-                    "   <button class=\"btn_Delete\">\n" +
-                    "         <i class=\"fa-solid fa-trash-can\" style=\"color: red;\"></i>\n" +
-                    "    </button>\n" +
-                    "</td>\n" +
-                    "</tr>");
+    public void findAll(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try{
+            response.setCharacterEncoding("UTF-8");
+            List<Category> categories = categoryDAO.findAll();
+            request.setAttribute("cate", categories);
+            System.out.println("Im here");
+            request.getRequestDispatcher("/views/shop/category.jsp").forward(request,response);
         }
-        out.println("</tbody>");
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

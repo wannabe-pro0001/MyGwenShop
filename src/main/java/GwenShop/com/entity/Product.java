@@ -54,5 +54,5 @@ public class Product implements Serializable {
     private List<Review> reviews;
 
     @OneToMany(mappedBy = "product")
-    private List<wishListItem> products;
+    private List<WishListItem> products;
 }
