@@ -38,7 +38,7 @@
             <div class="signup-content">
                 <div class="signup-form">
                     <h2>Đăng ký tài khoản</h2>
-                    <form method="POST" class="register-form" id="register-form" action="${pageContext.request.contextPath}/register">
+                    <form method="POST" class="register-form" id="register-form" action="${pageContext.request.contextPath}/sign-up">
                         <c:if test="${alert != null}">
                             <div class="alert alert-danger" role="alert">${alert}</div>
                         </c:if>
@@ -47,23 +47,23 @@
                         </c:if>
                         <div class="form-group">
                             <label for="email"><i class="zmdi zmdi-email"></i></label>
-                            <input type="email" name="email" id="email" placeholder="Email của bạn"/>
+                            <input type="email" name="email" id="email" placeholder="Email của bạn" required/>
                         </div>
                         <div class="form-group">
-                            <label for="fullname"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="fullname" id="fullname" placeholder="Họ tên của bạn">
+                            <label for="fullName"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" name="fullname" id="fullname" placeholder="Họ tên của bạn" required>
                         </div>
                         <div class="form-group">
-                            <label for="phone_number"><i class="zmdi zmdi-phone material-icons-name"></i></label>
-                            <input type="text" id="phone_number" name="phone" placeholder="Số điện thoại của bạn">
+                            <label for="phoneNo"><i class="zmdi zmdi-phone material-icons-name"></i></label>
+                            <input type="text" id="phoneNo" name="phoneNumber" placeholder="Số điện thoại của bạn" required>
                         </div>
                         <div class="form-group">
                             <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                            <input type="password" name="password" id="pass" placeholder="Mật khẩu"/>
+                            <input type="password" name="passwd" id="pass" placeholder="Mật khẩu" required/>
                         </div>
                         <div class="form-group">
                             <label for="re_pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                            <input type="password" name="re_pass" id="re_pass" placeholder="Nhập lại mật khẩu"/>
+                            <input type="password" name="re_pass" id="re_pass" placeholder="Nhập lại mật khẩu" required/>
                         </div>
                         <div class="form-group">
                             <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
