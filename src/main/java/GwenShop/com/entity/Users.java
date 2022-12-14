@@ -37,9 +37,6 @@ public class Users implements Serializable {
     @Column(name = "phoneNo")
     private String phoneNumber;
 
-    @Column(name = "salary")
-    private int salary;
-
     @Column(name = "roles")
     private int roles;
 

@@ -38,11 +38,17 @@
                     <c:if test="${alert != null}">
                         <div class="alert alert-danger" role="alert">${alert}</div>
                     </c:if>
+                    <c:if test="${announce != null}">
+                        <div class="alert alert-success" role="announce">${announce}</div>
+                    </c:if>
                     <h2 class="form-title">Đăng nhập vào <strong>Gwen Shop</strong></h2>
-                    <form method="POST" class="register-form" id="login-form" action = "${pageContext.request.contextPath}/admin/login">
+                    <form method="POST"
+                          class="register-form"
+                          id="login-form"
+                          action = "${pageContext.request.contextPath}/login">
                         <div class="form-group">
                             <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="username" id="your_name" placeholder="Tài khoản"/>
+                            <input type="text" name="username" id="your_name" placeholder="Tài khoản" required/>
                         </div>
                         <div class="form-group">
                             <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
