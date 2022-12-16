@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="MyGwenShop@localhost" uuid="7f624262-26ec-4016-935d-3c668a6b15e0">
+    <data-source source="LOCAL" name="@localhost sql server" uuid="cebd8f71-4934-4651-ac4f-0896a0f708c2">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://localhost;database=MyGwenShop</jdbc-url>
+      <jdbc-url>jdbc:sqlserver://localhost:1433</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
