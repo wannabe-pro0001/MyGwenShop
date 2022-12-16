@@ -9,6 +9,12 @@ import java.util.List;
 
 public class OrderServiceImpl implements IOrderService {
     IOrderDAO orderDao = new OrderDAOImpl();
+
+    @Override
+    public List<Order> findAll() {
+        return orderDao.findAll();
+    }
+
     @Override
     public Order findbyId(int id) {
         return orderDao.findbyId(id);

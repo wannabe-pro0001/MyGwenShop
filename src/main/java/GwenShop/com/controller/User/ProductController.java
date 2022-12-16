@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/product","/product/addToCart"})
+@WebServlet(urlPatterns = {"/product","/product/addToCart","/product/comment"})
 public class ProductController extends HttpServlet{
     ICartService cartService = new CartServiceImpl();
     IProductService productService = new ProductServiceImpl();
@@ -83,7 +83,10 @@ public class ProductController extends HttpServlet{
     private void findAll(HttpServletRequest req, HttpServletResponse resp){
         try{
             resp.setCharacterEncoding("UTF-8");
-            List<Product> products = productService.findAll(0, 0);
+            List<Product> products = productService.findAll(0, 12);
+            for(Product item:products){
+                System.out.println(products);
+            }
             req.setAttribute("product", products);
             RequestDispatcher rq = req.getRequestDispatcher("views/shop/product.jsp");
             rq.forward(req,resp);

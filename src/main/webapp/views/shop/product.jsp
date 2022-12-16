@@ -13,43 +13,64 @@
 </head>
 <body>
 <p>Alo alo 1234</p>
-<button type="button" id="sign-out">
-    <a href = "${pageContext.request.contextPath}/sign-out" for="sign-out" >Đăng xuất</a>
-</button>
+<c:if test="${sessionScope.account != null}">
+    <h1>Tên người dùng: ${sessionScope.account.fullName}</h1>
+    <button type="button" id="sign-out">
+        <a href = "${pageContext.request.contextPath}/sign-out" for="sign-out" >Đăng xuất</a>
+    </button>
+    <br>
+</c:if>
+<c:if test="${message != null}">
+    <div class="alert alert-success" role="alert">${message}</div>
+</c:if>
+<c:if test="${alert != null}">
+    <div class="alert alert-danger" role="alert">${alert}</div>
+</c:if>
 
-
-<thead>
-<tr>
-    <th></th>
-    <th>ID</th>
-    <th>Tên</th>
-    <th>Miêu tả</th>
-    <th>Giá</th>
-    <th>Số lượng</th>
-    <th>Thể loại</th>
-    <th></th>
-</tr>
-<thead>
-<tbody>
-<c:forEach var="item" items="${product}">
+<table class="table table-striped table-bordered table-hover"
+       id="sample_2">
+    <thead>
     <tr>
-        <td> <input type="checkbox"> </button>
-        <td class="col__id-category">${item.id}</td>
-        <td class="col__category-name">${item.name}</td>
-        <td class="col__category-productAmount">${item.description()}</td>
-        <td>${item.price}</td>
-        <td>${item.category.name}</td>
-        <td>
-            <button class="btn_Edit">
-                <i class="fa-solid fa-pen-to-square" style="color: white;"></i>
-            </button>
-            <button class="btn_Delete">
-                <i class="fa-solid fa-trash-can" style="color: red;"></i>
-            </button>
-        </td>
+        <th></th>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Miêu tả</th>
+        <th>Giá</th>
+        <th>Số lượng</th>
+        <th>Thể loại</th>
+        <th></th>
     </tr>
-</c:forEach>
-</tbody>
+    <thead>
+    <tbody>
+    <c:forEach var="item" items="${product}">
+        <tr>
+            <td class="col__id-category">${item.id}</td>
+            <td class="col__category-name">${item.name}</td>
+            <td class="col__category-productAmount">${item.description}</td>
+            <td>${item.price}</td>
+            <td>${item.category.name}</td>
+            <td>
+                <button class="btn_Edit">
+                    <i class="fa-solid fa-pen-to-square" style="color: white;"></i>
+                </button>
+                <button class="btn_Delete">
+                    <i class="fa-solid fa-trash-can" style="color: red;"></i>
+                </button>
+                <label>
+                    <input type="checkbox">
+                    <a href="<c:url value="/wishlist/add?productID=${item.id}"/>">Ưa thích</a>
+                </label>
+                <label>
+                    <input type="checkbox">
+                    <a href="<c:url value="/wishlist/remove?productID=${item.id}"/>">Bỏ ưa thích</a>
+                </label>
+            </td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
+
+
 </body>
 </html>
 

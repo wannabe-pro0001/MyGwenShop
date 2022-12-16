@@ -14,6 +14,7 @@
         <class>GwenShop.com.DAO.Impl.OrderDAOImpl</class>
         <class>GwenShop.com.DAO.Impl.ProductDAOImpl</class>
         <class>GwenShop.com.DAO.Impl.UserDAOImpl</class>
+        <class>GwenShop.com.DAO.Impl.WishListDAOImpl</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=MyGwenShop" /><!-- user=sa;password=1234567@a$ -->
             <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />

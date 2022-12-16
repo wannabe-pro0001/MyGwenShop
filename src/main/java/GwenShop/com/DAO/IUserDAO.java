@@ -13,9 +13,9 @@ public interface IUserDAO {
     public Users findByEmail(String email);
     public List<Users> findUsersByName(String searchString);
     public Users findById(int userid);
-    public void addWishList(Product product, Users user);
-    public void removeWishList(WishListItem item, Users user);
-    public void addReview(int userID, int prodID, String text);
+    public void addWishList(WishListItem item);
+    public void removeWishList(WishListItem item);
+    public void addReview(Review review);
     public void removeReview(Review review);
     public String checkDelivery(Order order);
 }

@@ -46,15 +46,13 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public void addWishList(Product product, Users user) {
-		userDAO.addWishList(product, user);
-	}
+	public void addWishList(WishListItem item) {userDAO.addWishList(item);}
 
 	@Override
-	public void removeWishList(WishListItem item, Users user) {userDAO.removeWishList(item, user);}
+	public void removeWishList(WishListItem item) {userDAO.removeWishList(item);}
 
 	@Override
-	public void addReview(int userID, int prodID, String text) {userDAO.addReview(userID, prodID, text);}
+	public void addReview(Review review) {userDAO.addReview(review);}
 
 	@Override
 	public void removeReview(Review review) {userDAO.removeReview(review);}
