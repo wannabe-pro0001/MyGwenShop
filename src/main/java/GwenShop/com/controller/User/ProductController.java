@@ -11,8 +11,10 @@ import GwenShop.com.Service.Impl.UserServiceImpl;
 import GwenShop.com.entity.Cart;
 import GwenShop.com.entity.CartItem;
 import GwenShop.com.entity.CompositeKey.CartItemID;
+import GwenShop.com.entity.Category;
 import GwenShop.com.entity.Product;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +24,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/product/addToCart"})
+@WebServlet(urlPatterns = {"/product","/product/addToCart"})
 public class ProductController extends HttpServlet{
     ICartService cartService = new CartServiceImpl();
     IProductService productService = new ProductServiceImpl();
@@ -35,12 +37,16 @@ public class ProductController extends HttpServlet{
         if (url.contains("addToCart")){
             addToCart(req, resp);
         }
+        else{
+            findAll(req, resp);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
+
 
     private void addToCart(HttpServletRequest req, HttpServletResponse resp) {
         try {
@@ -73,6 +79,19 @@ public class ProductController extends HttpServlet{
         catch  (Exception e) {
             e.printStackTrace();
             req.setAttribute("msg", "Eror: " + e.getMessage());
+        }
+    }
+
+    private void findAll(HttpServletRequest req, HttpServletResponse resp){
+        try{
+            resp.setCharacterEncoding("UTF-8");
+            List<Product> products = productService.findAll(0, 0);
+            req.setAttribute("product", products);
+            RequestDispatcher rq = req.getRequestDispatcher("views/shop/product.jsp");
+            rq.forward(req,resp);
+        }
+        catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

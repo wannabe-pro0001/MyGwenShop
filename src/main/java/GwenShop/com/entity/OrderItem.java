@@ -30,4 +30,10 @@ public class OrderItem implements Serializable {
     @ManyToOne
     @JoinColumn(name = "ProdID")
     private Product product;
+
+    public OrderItem(Order order, Product product, int amount){
+        this.order = order;
+        this.product = product;
+        this.amount = amount;
+    }
 }

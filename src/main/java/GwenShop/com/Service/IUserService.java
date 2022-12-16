@@ -8,7 +8,6 @@ public interface IUserService {
     public void createAccount(Users user);
     public void update(Users user);
     public void delete(int userID);
-
     public List<Users> findAll();
     public Users findByEmail(String email);
     public List<Users> findUsersByName(String searchString);

@@ -5,7 +5,7 @@
   Time: 3:32 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -13,6 +13,11 @@
 </head>
 <body>
     <p>Alo alo 1234</p>
+    <button type="button" id="sign-out">
+        <a href = "${pageContext.request.contextPath}/sign-out" for="sign-out" >Đăng xuất</a>
+    </button>
+
+
     <thead>
         <tr>
            <th></th>
@@ -25,7 +30,7 @@
     <tbody>
         <c:forEach var="item" items="${cate}">
         <tr>
-            <td> <input type="checkbox"> </td>
+            <td> <input type="checkbox"> </button>
             <td class="col__id-category">${item.getId()}</td>
             <td class="col__category-name">${item.getName()}</td>
             <td class="col__category-productAmount">${item.getDescription()}</td>

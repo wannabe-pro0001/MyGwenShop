@@ -33,7 +33,7 @@ public class CartController extends HttpServlet {
                 request.getRequestDispatcher("/views/user/cart.jsp").forward(request, response);
             }
         } else if (url.contains("checkout")) {
-            getCheckout(request, response);
+            postCheckout(request, response);
         } else if(url.contains("updateQuantity")) {
             updateQuantity(request, response);
         }
@@ -77,22 +77,23 @@ public class CartController extends HttpServlet {
                 int userId = Integer.parseInt((String) session.getAttribute("userId"));
                 Users user = userService.findById(userId);
 
+                String fullName = request.getParameter("fullName");
                 String address = request.getParameter("address");
-                int phone = Integer.parseInt(request.getParameter("phone"));
-                BigDecimal total = BigDecimal.valueOf(Integer.parseInt(request.getParameter("total")));
+                String phone = request.getParameter("phone");
+                int total = Integer.parseInt(request.getParameter("total"));
 
                 //tạo order
-                Order orders = new Order();
+                Order orders = new Order(fullName, address, phone, total, user);
                 orderService.insert(orders);
                 //thêm orderitem vào order
                 Cart cart = cartService.findCartByUserId(userId);
                 for (CartItem cartItem : cart.getCartItems()){
-                    OrderItem orderItem = new OrderItem();
+                    OrderItem orderItem = new OrderItem(orders, cartItem.getProduct(), cartItem.getAmount());
                     orderItemService.insert(orders.addOrderItem(orderItem));
                 }
                 //xoa cartitem khoi cart
                 for (CartItem cartItem : cart.getCartItems()){
-                    cartItemService.delete(cartItem);
+                    cartItemService.delete(new CartItemID(cart, cartItem.getProduct()));
                 }
 
                 //Thêm order vào db

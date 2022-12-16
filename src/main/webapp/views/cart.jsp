@@ -39,7 +39,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${list}" var="o">
+                                <c:forEach items="${cate}" var="o">
                                     <tr>
                                         <th scope="row">
                                             <div class="p-2">

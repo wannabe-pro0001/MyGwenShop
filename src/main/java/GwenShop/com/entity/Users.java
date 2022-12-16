@@ -3,6 +3,7 @@ package GwenShop.com.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -36,9 +37,6 @@ public class Users implements Serializable {
 
     @Column(name = "phoneNo")
     private String phoneNumber;
-
-    @Column(name = "salary")
-    private int salary;
 
     @Column(name = "roles")
     private int roles;

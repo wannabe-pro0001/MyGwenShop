@@ -53,7 +53,7 @@ public class Order implements Serializable {
         this.fullName = fullName;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.status = "";
+        this.status = "chờ xử lý";
         this.price = price;
         this.create_at = new Date().toString();
         this.user = user;
