@@ -15,7 +15,7 @@ public class CartServiceImpl implements ICartService {
     }
 
     @Override
-    public List<Cart> findCartByUserId(int userId) {
+    public Cart findCartByUserId(int userId) {
         return cartDao.findCartByUserId(userId);
     }
 

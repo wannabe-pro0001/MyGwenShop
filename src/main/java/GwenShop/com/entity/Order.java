@@ -3,10 +3,14 @@ package GwenShop.com.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jboss.weld.executor.DaemonThreadFactory;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.function.ObjDoubleConsumer;
 
 @Entity
 @Table(name = "Orders")
@@ -44,5 +48,20 @@ public class Order implements Serializable {
     private Users employee;
 
     @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems;
+    private List<OrderItem> orderItems = new ArrayList<>();
+    public Order (String fullName, String address, String phoneNumber, int price, Users user){
+        this.fullName = fullName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.status = "";
+        this.price = price;
+        this.create_at = new Date().toString();
+        this.user = user;
+    }
+
+    public OrderItem addOrderItem(OrderItem orderItem){
+        getOrderItems().add(orderItem);
+        orderItem.setOrder(this);
+        return orderItem;
+    }
 }

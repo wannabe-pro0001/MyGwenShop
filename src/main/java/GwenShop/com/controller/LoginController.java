@@ -42,6 +42,9 @@ public class LoginController extends HttpServlet {
             String alertMsg="";
             String username = req.getParameter("username");
             String password = req.getParameter("password");
+            HttpSession session = req.getSession(true);
+            session.setAttribute("userId", "1");
+            System.out.println(session.getAttribute("userId"));
             resp.sendRedirect("/employee");
 //            if(username.equals("phuc") && password.equals("123456")){
 //                resp.sendRedirect("/employee");

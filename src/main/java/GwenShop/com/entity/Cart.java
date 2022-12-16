@@ -19,7 +19,7 @@ public class Cart implements Serializable {
     private int id;
 
     /* Tạo quan hệ */
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="userId")
     private Users user;
 
@@ -28,5 +28,11 @@ public class Cart implements Serializable {
 
     public Cart(Users user){
         this.user = user;
+    }
+
+    public CartItem addCartItem (CartItem cartItem){
+        getCartItems().add(cartItem);
+        cartItem.setCart(this);
+        return cartItem;
     }
 }

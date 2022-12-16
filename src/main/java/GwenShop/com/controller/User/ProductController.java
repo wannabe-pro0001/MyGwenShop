@@ -10,6 +10,7 @@ import GwenShop.com.Service.Impl.ProductServiceImpl;
 import GwenShop.com.Service.Impl.UserServiceImpl;
 import GwenShop.com.entity.Cart;
 import GwenShop.com.entity.CartItem;
+import GwenShop.com.entity.CompositeKey.CartItemID;
 import GwenShop.com.entity.Product;
 
 import javax.servlet.ServletException;
@@ -30,15 +31,15 @@ public class ProductController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getRequestURL().toString();
         if (url.contains("addToCart")){
             addToCart(req, resp);
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     }
 
     private void addToCart(HttpServletRequest req, HttpServletResponse resp) {
@@ -55,18 +56,18 @@ public class ProductController extends HttpServlet{
                     Cart cart = new Cart(userService.findById(userId));
                     cartService.insert(cart);
                 }
-                List<Cart> userCart = cartService.findCartByUserId(userId);
+                Cart userCart = cartService.findCartByUserId(userId);
                 Product product = productService.findProductById(prodId);
+                CartItem cartItem = new CartItem(userCart, product, 1);
                 //Kiểm tra sản phẩm đã tồn tại trong giỏ hàng chưa
-//                if (!cartItemService.existCartItem(product)) {
-//                    CartItem cartItem = new CartItem(userCart, product, 1);
-//                    cartItemService.insert(userCart.addCartItem(cartItem));
-//                }
-//                else{
-//                    CartItem cartItem = cartItemService.findByProdId(product);
-//                    cartItem.setCount(cartItem.getCount() + 1);
-//                    cartItemService.update(cartItem);
-//                }
+                if (!cartItemService.existCartItem(cartItem)) {
+                    cartItemService.insert(userCart.addCartItem(cartItem));
+                }
+                else{
+                    CartItem existCartItem = cartItemService.findByProdId(cartItem);
+                    existCartItem.setAmount(existCartItem.getAmount() + 1);
+                    cartItemService.update(existCartItem);
+                }
             }
         }
         catch  (Exception e) {

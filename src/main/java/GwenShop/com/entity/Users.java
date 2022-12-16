@@ -47,8 +47,8 @@ public class Users implements Serializable {
     private Date create_at;
 
     //Tạo quan hệ
-    @OneToMany(mappedBy = "user")
-    private List<Cart> carts;
+    @OneToOne(mappedBy = "user")
+    private Cart carts;
 
     @OneToMany(mappedBy = "user")
     private List<WishListItem> wishListItems;
