@@ -62,7 +62,6 @@ public class Order implements Serializable {
 
     public OrderItem addOrderItem(OrderItem orderItem){
         getOrderItems().add(orderItem);
-        orderItem.setOrder(this);
         return orderItem;
     }
 }

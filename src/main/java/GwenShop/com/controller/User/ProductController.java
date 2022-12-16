@@ -36,6 +36,7 @@ public class ProductController extends HttpServlet{
         String url = req.getRequestURL().toString();
         if (url.contains("addToCart")){
             addToCart(req, resp);
+            findAll(req, resp);
         }
         else{
             findAll(req, resp);
