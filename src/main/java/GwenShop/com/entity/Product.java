@@ -3,6 +3,7 @@ package GwenShop.com.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.util.List;
 @Table(name = "product")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @NamedQuery(name = "Product.findAll", query = "SELECT c FROM Product c")
 public class Product implements Serializable {
@@ -39,20 +41,26 @@ public class Product implements Serializable {
     private Category category;
 
     @OneToMany(mappedBy = "product")
+    @ToString.Exclude
     private List<ProductImage> productImages;
 
     @OneToMany(mappedBy = "product")
+    @ToString.Exclude
     private List<ProductSize> productSizes;
 
     @OneToMany(mappedBy = "product")
+    @ToString.Exclude
     private List<CartItem> cartItems;
 
     @OneToMany(mappedBy = "product")
+    @ToString.Exclude
     private List<OrderItem> orderItems;
 
     @OneToMany(mappedBy = "product")
+    @ToString.Exclude
     private List<Review> reviews;
 
     @OneToMany(mappedBy = "product")
-    private List<WishListItem> products;
+    @ToString.Exclude
+    private List<WishListItem> wishListItems;
 }

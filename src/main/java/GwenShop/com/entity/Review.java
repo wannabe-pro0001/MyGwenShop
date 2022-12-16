@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 
 @Getter
@@ -33,4 +34,27 @@ public class Review implements Serializable {
     @ManyToOne
     @JoinColumn(name = "prodID")
     private Product product;
+
+    public Review AddReview(){
+        List<Review> reviews = this.user.getReviews();
+        reviews.add(this);
+        this.user.setReviews(reviews);
+
+        reviews = this.product.getReviews();
+        reviews.add(this);
+        this.product.setReviews(reviews);
+        return this;
+    }
+
+    public Review RemoveReview(){
+        List<Review> reviews = this.user.getReviews();
+        reviews.remove(this);
+        this.user.setReviews(reviews);
+
+        reviews = this.product.getReviews();
+        reviews.remove(this);
+        this.product.setReviews(reviews);
+        return this;
+    }
+
 }
