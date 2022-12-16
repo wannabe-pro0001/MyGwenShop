@@ -7,13 +7,12 @@ import GwenShop.com.util.Constants;
 import GwenShop.com.util.HashPassword;
 import org.apache.commons.beanutils.BeanUtils;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = {"/login", "/sign-up", "/sign-out"})
+@WebServlet(urlPatterns = {"/login", "/sign-up", "/sign-out", "/waiting"})
 public class AuthController extends HttpServlet {
     IUserService userService = new UserServiceImpl();
     @Override
@@ -25,7 +24,7 @@ public class AuthController extends HttpServlet {
         } else if (url.contains("sign-up")) {
             SignUpPost(req, resp);
         } else {
-            req.getRequestDispatcher("views/admin/category.jsp").forward(req,resp);
+            req.getRequestDispatcher(req.getContextPath()+"/waiting").forward(req,resp);
         }
     }
     @Override
@@ -37,6 +36,8 @@ public class AuthController extends HttpServlet {
             SignUpGet(req, resp);
         } else if (url.contains("sign-out")) {
             SignOutGet(req, resp);
+        } else if (url.contains("waiting")){
+            WaitingGet(req, resp);
         }
     }
     private void LoginPost(HttpServletRequest req, HttpServletResponse resp){
@@ -84,14 +85,7 @@ public class AuthController extends HttpServlet {
             if(isRememberMe){
                 saveRemeberMe(resp, username);
             }
-            switch (user.getRoles()){
-                case 0:
-                    //resp.sendRedirect(req.getContextPath()+"/category/load-table");
-                    resp.sendRedirect("home.jsp");
-                    break;
-                case 1:
-                    resp.sendRedirect("/employee");
-            }
+            resp.sendRedirect(req.getContextPath()+"/waiting");
         }
         catch (Exception e){
             e.printStackTrace();
@@ -105,13 +99,16 @@ public class AuthController extends HttpServlet {
                 resp.sendRedirect(req.getContextPath() + "/waiting");
                 return;
             }
+
             // Check cookie
             Cookie[] cookies = req.getCookies();
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
                     if (cookie.getName().equals("username")) {
                         session = req.getSession(true);
-                        session.setAttribute("username", cookie.getValue());
+                        Users user = userService.findByEmail(cookie.getValue());
+                        cookie.setMaxAge(5*60);
+                        session.setAttribute("account", user);
                         resp.sendRedirect(req.getContextPath() + "/waiting");
                         return;
                     }
@@ -152,11 +149,10 @@ public class AuthController extends HttpServlet {
             HashPassword pw = new HashPassword();
             user.setPasswd(pw.hash(password));
             long millis=System.currentTimeMillis();
+            java.sql.Date date = new java.sql.Date(millis);
             // creating a new object of the class Date
             user.setRoles(0);
-            java.sql.Date date = new java.sql.Date(millis);
             user.setCreate_at(date);
-            System.out.println(date);
             userService.createAccount(user);
             req.setAttribute("announce", "Tạo tài khoản thành công");
             req.getRequestDispatcher("views/login.jsp").forward(req, resp);
@@ -184,6 +180,22 @@ public class AuthController extends HttpServlet {
         }
         catch (Exception e){
             e.printStackTrace();
+        }
+    }
+    private void WaitingGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        HttpSession session = req.getSession();
+        if (session != null && session.getAttribute("account") != null) {
+            Users u = (Users) session.getAttribute("account");
+            req.setAttribute("email", u.getFullName());
+            if (u.getRoles() == 1) {
+                resp.sendRedirect(req.getContextPath() + "/admin/home");
+            } else if (u.getRoles() == 2) {
+                resp.sendRedirect(req.getContextPath() + "/manager/home");
+            } else {
+                resp.sendRedirect(req.getContextPath() + "/product");
+            }
+        } else {
+            resp.sendRedirect(req.getContextPath() + "/login");
         }
     }
     private void sendAlertMsg(HttpServletRequest req, HttpServletResponse resp, String msg) throws ServletException, IOException {

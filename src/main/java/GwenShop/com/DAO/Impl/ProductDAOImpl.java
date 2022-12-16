@@ -24,7 +24,11 @@ public class ProductDAOImpl implements IProductDAO {
 
     @Override
     public List<Product> findAll(int page, int pageSize) {
+        EntityManager enma = JPAConfig.getEntityManager();
         TypedQuery<Product> query= enma.createNamedQuery("Product.findAll", Product.class);
+        query.setFirstResult(page*pageSize);
+        query.setMaxResults(pageSize);
+
         return query.getResultList();
     }
 

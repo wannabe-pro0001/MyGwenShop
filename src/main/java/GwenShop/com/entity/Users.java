@@ -21,25 +21,18 @@ public class Users implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
     @Column(name = "fullName")
     private String fullName;
-
     @Column(name = "email")
     private String email;
-
     @Column(name = "passwd")
     private String passwd;
-
     @Column(name = "addr")
     private String addr;
-
     @Column(name = "phoneNo")
     private String phoneNumber;
-
     @Column(name = "roles")
     private int roles;
-
     @Column(name = "create_at")
     private Date create_at;
 
@@ -61,18 +54,4 @@ public class Users implements Serializable {
 
     @OneToMany(mappedBy = "employee")
     private List<Order> VerifiedOrders;
-
-    //
-    public WishListItem AddWishList(Product product){
-        WishListItem item = new WishListItem();
-        item.setUser(this);
-        item.setProduct(product);
-        wishListItems.add(item);
-        return item;
-    }
-
-    public WishListItem RemoveWishList(WishListItem item){
-        wishListItems.remove(item);
-        return item;
-    }
 }

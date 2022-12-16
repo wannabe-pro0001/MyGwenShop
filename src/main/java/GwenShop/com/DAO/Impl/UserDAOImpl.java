@@ -2,6 +2,7 @@ package GwenShop.com.DAO.Impl;
 
 import GwenShop.com.DAO.IUserDAO;
 import GwenShop.com.entity.*;
+import GwenShop.com.entity.CompositeKey.WishListItemID;
 import GwenShop.com.util.JPAConfig;
 
 import javax.persistence.EntityManager;
@@ -93,13 +94,13 @@ public class UserDAOImpl implements IUserDAO {
     }
 
     @Override
-    public void addWishList(Product product, Users user) {
+    public void addWishList(WishListItem item) {
         EntityManager enma = JPAConfig.getEntityManager();
         EntityTransaction trans = enma.getTransaction();
-        WishListItem item = user.AddWishList(product);
+
         try{
             trans.begin();
-            enma.persist(item);
+            enma.merge(item);
             trans.commit();
         }
         catch (Exception e){
@@ -113,14 +114,15 @@ public class UserDAOImpl implements IUserDAO {
     }
 
     @Override
-    public void removeWishList(WishListItem item, Users user) {
+    public void removeWishList(WishListItem item) {
         EntityManager enma = JPAConfig.getEntityManager();
         EntityTransaction trans = enma.getTransaction();
-        WishListItem term = user.RemoveWishList(item);
+        WishListItem itemID = enma.find(WishListItem.class, new WishListItemID(item.getUser(), item.getProduct()));
         try{
             trans.begin();
-            if (enma.find(WishListItem.class, item) != null)
-                enma.remove(item);
+            if (itemID != null){
+                enma.remove(itemID);
+            }
             trans.commit();
         }
         catch (Exception e){
@@ -134,13 +136,45 @@ public class UserDAOImpl implements IUserDAO {
     }
 
     @Override
-    public void addReview(int userID, int prodID, String text) {
+    public void addReview(Review review) {
+        EntityManager enma = JPAConfig.getEntityManager();
+        EntityTransaction trans = enma.getTransaction();
 
+        try{
+            trans.begin();
+            enma.persist(review);
+            trans.commit();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            trans.rollback();
+            throw e;
+        }
+        finally {
+            enma.close();
+        }
     }
 
     @Override
     public void removeReview(Review review) {
+        EntityManager enma = JPAConfig.getEntityManager();
+        EntityTransaction trans = enma.getTransaction();
 
+        try{
+            trans.begin();
+            if (enma.find(Review.class, review) != null){
+                enma.remove(review);
+            }
+            trans.commit();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            trans.rollback();
+            throw e;
+        }
+        finally {
+            enma.close();
+        }
     }
 
     @Override
