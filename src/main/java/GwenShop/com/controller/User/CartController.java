@@ -80,16 +80,26 @@ public class CartController extends HttpServlet {
                 String fullName = request.getParameter("fullName");
                 String address = request.getParameter("address");
                 String phone = request.getParameter("phone");
-                int total = Integer.parseInt(request.getParameter("total"));
+                //int total = Integer.parseInt(request.getParameter("total"));
+                int total = 0;
+                Cart cart = cartService.findCartByUserId(userId);
+
+                for (CartItem cartItem : cart.getCartItems()){
+                    int price = cartItem.getProduct().getPrice();
+                    int amount = cartItem.getAmount();
+
+                    total += price*amount;
+                }
 
                 //tạo order
                 Order orders = new Order(fullName, address, phone, total, user);
                 orderService.insert(orders);
+
                 //thêm orderitem vào order
-                Cart cart = cartService.findCartByUserId(userId);
                 for (CartItem cartItem : cart.getCartItems()){
                     OrderItem orderItem = new OrderItem(orders, cartItem.getProduct(), cartItem.getAmount());
-                    orderItemService.insert(orders.addOrderItem(orderItem));
+                    //orderItemService.insert(orders.addOrderItem(orderItem));
+                    orderItemService.insert(orderItem);
                 }
                 //xoa cartitem khoi cart
                 for (CartItem cartItem : cart.getCartItems()){
@@ -106,7 +116,6 @@ public class CartController extends HttpServlet {
             request.setAttribute("msg", "Eror: " + e.getMessage());
         }
     }
-
     private void updateQuantity(HttpServletRequest request, HttpServletResponse response) {
         try{
             HttpSession session = request.getSession(true);
@@ -166,12 +175,12 @@ public class CartController extends HttpServlet {
     private void findAll(HttpServletRequest request, HttpServletResponse response) {
         try {
             HttpSession session = request.getSession(true);
-            if (session.getAttribute("userId") == null && !response.isCommitted()) {
+            if (session.getAttribute("account") == null && !response.isCommitted()) {
                 response.sendRedirect(request.getContextPath() + "/login");
             }
             else {
-                int userId = Integer.parseInt((String) session.getAttribute("userId"));
-                Cart cart = cartService.findCartByUserId(userId);
+                Users userId = (Users) session.getAttribute("account");
+                Cart cart = cartService.findCartByUserId(userId.getId());
                 request.setAttribute("cartItems", cart.getCartItems()); //Trả về giá trị cho view
             }
         } catch (Exception e){

@@ -16,7 +16,8 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="/GwenShop_war_exploded/views/public/css/home.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/public/css/home.css">
+
 
     <!-- <link href="<c:url value="templates/css/style.css"/>" rel="stylesheet" type="text/css"> -->
 </head>
@@ -25,7 +26,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
             <a class="navbar-brand mt-2 mt-lg-0 logo"  href="#">
-                <img src="/GwenShop_war_exploded/views/public/images/logo_2.png" alt="Gwen Logo" width="100%"/>
+                <img src="${pageContext.request.contextPath}/views/public/images/logo_2.png" alt="Gwen Logo" width="100%"/>
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav  mx-auto ">
@@ -65,7 +66,7 @@
     </div>
 </header>
 <div class="than">
-    <img src="/GwenShop_war_exploded/views/public/images/260214118_436427648105439_5090248770818895985_n.jpg " height="550px" width="100%">
+    <img src="${pageContext.request.contextPath}/views/public/images/260214118_436427648105439_5090248770818895985_n.jpg " height="550px" width="100%">
 </div>
 <div class="khung">
     <div class="khoi">
@@ -105,7 +106,7 @@
             <div class="col-lg-3">
                 <div class="footer_block">
                     <a class="logo-wrapper mb-3 d-block "  href="#">
-                        <img src="/GwenShop_war_exploded/views/public/images/logo_2.png" alt="Gwen Logo" height= "100px" width="100px"/>
+                        <img src="${pageContext.request.contextPath}/views/public/images/logo_2.png" alt="Gwen Logo" height= "100px" width="100px"/>
                     </a>
                     <div class="single-contact text_footer">
                         <div class="content">
@@ -170,27 +171,27 @@
                             <ul class="follow_option">
                                 <li>
                                     <a class="icon" href="">
-                                        <img src="/GwenShop_war_exploded/views/public/images/facebook.png" width="32px" height="32px" alt="facebook">
+                                        <img src="${pageContext.request.contextPath}/views/public/images/facebook.png" width="32px" height="32px" alt="facebook">
                                     </a>
                                 </li>
                                 <li>
                                     <a class="icon" href="">
-                                        <img src="/GwenShop_war_exploded/views/public/images/zalo.png" width="32px" height="32px" alt="zalo">
+                                        <img src="${pageContext.request.contextPath}/views/public/images/zalo.png" width="32px" height="32px" alt="zalo">
                                     </a>
                                 </li>
                                 <li>
                                     <a class="icon" href="">
-                                        <img src="/GwenShop_war_exploded/views/public/images/instagram.png" width=32px" height="32px" alt="instagram">
+                                        <img src="${pageContext.request.contextPath}/views/public/images/instagram.png" width=32px" height="32px" alt="instagram">
                                     </a>
                                 </li>
                                 <li>
                                     <a class="icon" href="">
-                                        <img src="/GwenShop_war_exploded/views/public/images/youtube.png" width="32px" height="32px" alt="youtube">
+                                        <img src="${pageContext.request.contextPath}/views/public/images/youtube.png" width="32px" height="32px" alt="youtube">
                                     </a>
                                 </li>
                                 <li>
                                     <a class="icon" href="">
-                                        <img src="/GwenShop_war_exploded/views/public/images/tiktok.png" width="32px" height="32px" alt="tiktok">
+                                        <img src="${pageContext.request.contextPath}/views/public/images/tiktok.png" width="32px" height="32px" alt="tiktok">
                                     </a>
                                 </li>
                             </ul>
@@ -201,7 +202,7 @@
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4">
                         <div class="bank">
-                            <img src="/GwenShop_war_exploded/views/public/images/footer_trustbadge.png" width="277px" height="34px" alt="tiktok">
+                            <img src="${pageContext.request.contextPath}/views/public/images/footer_trustbadge.png" width="277px" height="34px" alt="tiktok">
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,8 @@
 package GwenShop.com.entity;
 
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,6 +26,7 @@ public class Cart implements Serializable {
     private Users user;
 
     @OneToMany(mappedBy = "cart")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<CartItem> cartItems;
 
     public Cart(Users user){

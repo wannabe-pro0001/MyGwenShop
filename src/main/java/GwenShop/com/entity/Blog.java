@@ -19,9 +19,9 @@ public class Blog implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="id")
     private int id;
-    @Column(name ="title")
+    @Column(name ="title", columnDefinition = "nvarchar")
     private String title;
-    @Column(name = "content")
+    @Column(name = "content", columnDefinition = "nvarchar")
     private String content;
 
     @ManyToOne

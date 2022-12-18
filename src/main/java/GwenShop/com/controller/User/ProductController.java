@@ -8,11 +8,8 @@ import GwenShop.com.Service.Impl.CartItemServiceImpl;
 import GwenShop.com.Service.Impl.CartServiceImpl;
 import GwenShop.com.Service.Impl.ProductServiceImpl;
 import GwenShop.com.Service.Impl.UserServiceImpl;
-import GwenShop.com.entity.Cart;
-import GwenShop.com.entity.CartItem;
+import GwenShop.com.entity.*;
 import GwenShop.com.entity.CompositeKey.CartItemID;
-import GwenShop.com.entity.Category;
-import GwenShop.com.entity.Product;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,7 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/product","/product/addToCart","/product/comment"})
+@WebServlet(urlPatterns = {"/product","/product/addToCart","/product/comment","/product/detail"})
 public class ProductController extends HttpServlet{
     ICartService cartService = new CartServiceImpl();
     IProductService productService = new ProductServiceImpl();
@@ -36,9 +33,9 @@ public class ProductController extends HttpServlet{
         String url = req.getRequestURL().toString();
         if (url.contains("addToCart")){
             addToCart(req, resp);
-            findAll(req, resp);
-        }
-        else{
+        } else if (url.contains("detail")) {
+            ProductDetail(req, resp);
+        } else{
             findAll(req, resp);
         }
     }
@@ -52,12 +49,14 @@ public class ProductController extends HttpServlet{
     private void addToCart(HttpServletRequest req, HttpServletResponse resp) {
         try {
             HttpSession session = req.getSession(true);
-            if(session.getAttribute("userId") == null){
+            if((Users) session.getAttribute("account") == null){
+                req.setAttribute("alert", "Vui lòng đăng nhập để thêm vào giỏ hàng");
                 resp.sendRedirect(req.getContextPath()+"/login");
             }else {
                 int userId = Integer.parseInt((String) session.getAttribute("userId"));
 
                 int prodId = Integer.parseInt(req.getParameter("productId"));
+                //int amount = Integer.parseInt(req.getParameter("amount"));
                 //Kiểm tra user có cart hay chưa nếu chưa thì tạo
                 if (!cartService.existCart(userId)) {
                     Cart cart = new Cart(userService.findById(userId));
@@ -82,17 +81,30 @@ public class ProductController extends HttpServlet{
             req.setAttribute("msg", "Eror: " + e.getMessage());
         }
     }
-
     private void findAll(HttpServletRequest req, HttpServletResponse resp){
         try{
             resp.setCharacterEncoding("UTF-8");
             List<Product> products = productService.findAll(0, 12);
-            for(Product item:products){
-                System.out.println(products);
-            }
             req.setAttribute("product", products);
             RequestDispatcher rq = req.getRequestDispatcher("views/shop/product.jsp");
             rq.forward(req,resp);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    private void ProductDetail(HttpServletRequest req, HttpServletResponse resp){
+        try{
+            int productID = Integer.parseInt(req.getParameter("productID"));
+
+            Product product = productService.findProductById(productID);
+            if (product != null){
+                req.setAttribute("product", product);
+                resp.sendRedirect(req.getContextPath()+"/views/shop/productDetail.jsp");
+            }
+            else{
+                req.setAttribute("message", "Không tìm thấy sản phẩm, vui lòng thử lại sau");
+            }
         }
         catch (Exception e){
             e.printStackTrace();

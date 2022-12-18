@@ -80,7 +80,14 @@ public class CartItemDAOImpl implements ICartItemDAO {
     }
     public boolean existCartItem(CartItem cartItem) {
         EntityManager enma = JPAConfig.getEntityManager();
-        boolean prod = enma.createQuery("FROM CartItem I WHERE I.product = :product and I.cart = : cart").setParameter("product", cartItem.getProduct()).setParameter("cart", cartItem.getCart()).getResultList().size() > 0 ? true : false;
-        return prod;
+/*        boolean prod = enma.createQuery("FROM CartItem I WHERE I.product = :product and I.cart = : cart")
+                .setParameter("product", cartItem.getProduct())
+                .setParameter("cart", cartItem.getCart())
+                .getResultList().size() > 0 ? true : false;*/
+        if (enma.find(CartItem.class,
+                new CartItemID(cartItem.getCart(), cartItem.getProduct())) != null)
+            return true;
+        return false;
+        //return prod;
     }
 }

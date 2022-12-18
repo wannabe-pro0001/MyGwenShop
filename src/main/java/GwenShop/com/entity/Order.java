@@ -3,6 +3,8 @@ package GwenShop.com.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.jboss.weld.executor.DaemonThreadFactory;
 
 import javax.persistence.*;
@@ -49,6 +51,7 @@ public class Order implements Serializable {
     private Users employee;
 
     @OneToMany(mappedBy = "order")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<OrderItem> orderItems = new ArrayList<>();
     public Order (String fullName, String address, String phoneNumber, int price, Users user){
         this.fullName = fullName;

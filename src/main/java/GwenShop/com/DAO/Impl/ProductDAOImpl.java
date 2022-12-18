@@ -12,10 +12,9 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class ProductDAOImpl implements IProductDAO {
-    private EntityManager enma = JPAConfig.getEntityManager();
-    private EntityTransaction trans = enma.getTransaction();
     @Override
     public List<Product> findProductByName(String searchString) {
+        EntityManager enma = JPAConfig.getEntityManager();
         String jpql = "SELECT p FROM Product p WHERE p.name like :name";
         TypedQuery<Product> query= enma.createQuery(jpql, Product.class);
         query.setParameter("name", "%" + searchString + "%");
@@ -34,6 +33,7 @@ public class ProductDAOImpl implements IProductDAO {
 
     @Override
     public int count() {
+        EntityManager enma = JPAConfig.getEntityManager();
         String jpql = "SELECT COUNT(id) FROM Product p";
         Query query = enma.createQuery(jpql);
 
@@ -42,6 +42,7 @@ public class ProductDAOImpl implements IProductDAO {
 
     @Override
     public Product findProductById(int prodId) {
+        EntityManager enma = JPAConfig.getEntityManager();
         Product product = enma.find(Product.class, prodId);
         return product;
     }
