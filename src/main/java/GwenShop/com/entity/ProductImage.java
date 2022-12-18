@@ -1,6 +1,7 @@
 package GwenShop.com.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.io.Serializable;
 @Table(name = "ProductImage")
 @Getter
 @Setter
+@NoArgsConstructor
 public class ProductImage implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -25,6 +27,4 @@ public class ProductImage implements Serializable {
     @JoinColumn(name = "productId")
     private Product product;
 
-    //Constructor
-    public ProductImage() {}
 }

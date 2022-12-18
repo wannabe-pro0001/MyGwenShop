@@ -5,6 +5,7 @@ import GwenShop.com.DAO.Impl.CategoryDAOImpl;
 import GwenShop.com.Service.ICategoryService;
 import GwenShop.com.entity.Category;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 public class CategoryServiceImpl implements ICategoryService {
@@ -30,7 +31,10 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     @Override
-    public List<Category> findAll() {
+    public List<Category> findAll(EntityManager entityManager){
+        return cateDAO.findAll(entityManager);
+    }
+    public List<Category> findAll(){
         return cateDAO.findAll();
     }
 

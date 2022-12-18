@@ -26,11 +26,12 @@ public class OrderDAOImpl implements IOrderDAO {
 
     @Override
     public List<Order> findbyUserId(int id) {
-        EntityManager enma = JPAConfig.getEntityManager();
-        String jpql = "SELECT o FROM Order o WHERE o.userId = :id";
-        TypedQuery<Order> query= enma.createQuery(jpql, Order.class);
-        query.setParameter("id", id);
-        return query.getResultList();
+//        EntityManager enma = JPAConfig.getEntityManager();
+//        String jpql = "SELECT o FROM Order o WHERE o.userId = :id";
+//        TypedQuery<Order> query= enma.createQuery(jpql, Order.class);
+//        query.setParameter("id", id);
+//        return query.getResultList();
+        return null;
     }
 
     @Override
