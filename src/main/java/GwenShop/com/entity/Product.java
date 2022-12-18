@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -41,11 +43,13 @@ public class Product implements Serializable {
     private Category category;
 
     @OneToMany(mappedBy = "product")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ToString.Exclude
     private List<ProductImage> productImages;
 
     @OneToMany(mappedBy = "product")
     @ToString.Exclude
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<ProductSize> productSizes;
 
     @OneToMany(mappedBy = "product")
@@ -57,10 +61,18 @@ public class Product implements Serializable {
     private List<OrderItem> orderItems;
 
     @OneToMany(mappedBy = "product")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ToString.Exclude
     private List<Review> reviews;
 
     @OneToMany(mappedBy = "product")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ToString.Exclude
     private List<WishListItem> wishListItems;
+
+    @PreRemove
+    private void preRemove(){
+        cartItems.forEach(item->item.setProduct(null));
+        orderItems.forEach(item->item.setProduct(null));
+    }
 }

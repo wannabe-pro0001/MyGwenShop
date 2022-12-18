@@ -3,10 +3,16 @@ package GwenShop.com.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.jboss.weld.executor.DaemonThreadFactory;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.function.ObjDoubleConsumer;
 
 @Entity
 @Table(name = "Orders")
@@ -45,5 +51,21 @@ public class Order implements Serializable {
     private Users employee;
 
     @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems;
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<OrderItem> orderItems = new ArrayList<>();
+
+    public Order (String fullName, String address, String phoneNumber, int price, Users user){
+        this.fullName = fullName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.status = "chờ xử lý";
+        this.price = price;
+        this.create_at = new Date().toString();
+        this.user = user;
+    }
+
+    public OrderItem addOrderItem(OrderItem orderItem){
+        getOrderItems().add(orderItem);
+        return orderItem;
+    }
 }

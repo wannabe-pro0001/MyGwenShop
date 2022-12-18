@@ -16,6 +16,8 @@ public class CategoryDAOImpl implements ICategoryDAO {
 
     @Override
     public void insert(Category category) {
+        EntityManager enma = JPAConfig.getEntityManager();
+        EntityTransaction trans = enma.getTransaction();
         try {
             trans.begin();
             enma.persist(category);
@@ -67,10 +69,15 @@ public class CategoryDAOImpl implements ICategoryDAO {
 
     @Override
     public Category findById(int cateid) {
-        Category cate = enma.find(Category.class, cateid);
-        return null;
+        EntityManager enma = JPAConfig.getEntityManager();
+        return enma.find(Category.class, cateid);
     }
 
+    @Override
+    public List<Category> findAll(EntityManager entityManager) {
+        TypedQuery<Category> query= entityManager.createNamedQuery("Category.findAll", Category.class);
+        return query.getResultList();
+    }
     @Override
     public List<Category> findAll() {
         TypedQuery<Category> query= enma.createNamedQuery("Category.findAll", Category.class);

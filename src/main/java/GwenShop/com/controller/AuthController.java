@@ -81,6 +81,7 @@ public class AuthController extends HttpServlet {
 
             HttpSession session = req.getSession(true);
             session.setAttribute("account", user);
+            session.setAttribute("userId", (String.valueOf(user.getId())));
             session.setAttribute("account_name", user.getEmail());
             if(isRememberMe){
                 saveRemeberMe(resp, username);
@@ -145,14 +146,14 @@ public class AuthController extends HttpServlet {
             }
             Users user = new Users();
             BeanUtils.populate(user, req.getParameterMap());
-            String password = req.getParameter("passwd");
+
             HashPassword pw = new HashPassword();
-            user.setPasswd(pw.hash(password));
+            user.setPasswd(pw.hash(passwd));
             long millis=System.currentTimeMillis();
             java.sql.Date date = new java.sql.Date(millis);
             // creating a new object of the class Date
             user.setRoles(0);
-            user.setCreate_at(date);
+            user.setCreate_at(date.toString());
             userService.createAccount(user);
             req.setAttribute("announce", "Tạo tài khoản thành công");
             req.getRequestDispatcher("views/login.jsp").forward(req, resp);
@@ -192,7 +193,7 @@ public class AuthController extends HttpServlet {
             } else if (u.getRoles() == 2) {
                 resp.sendRedirect(req.getContextPath() + "/manager/home");
             } else {
-                resp.sendRedirect(req.getContextPath() + "/product");
+                req.getRequestDispatcher("/home.jsp");
             }
         } else {
             resp.sendRedirect(req.getContextPath() + "/login");
