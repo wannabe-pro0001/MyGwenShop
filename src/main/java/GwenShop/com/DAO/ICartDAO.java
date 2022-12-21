@@ -10,4 +10,5 @@ public interface ICartDAO {
     public void insert (Cart cart);
     public void delete (int cartId)  throws Exception;
     public void update (Cart cart);
+    int QuantityCount(int cartId);
 }

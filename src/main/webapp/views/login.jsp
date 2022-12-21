@@ -8,10 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Font Icon -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/public/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/fonts/material-icon/css/material-design-iconic-font.min.css">
 
     <!-- Main css -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/public/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/style.css">
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -30,8 +30,8 @@
         <div class="container">
             <div class="signin-content">
                 <div class="signin-image">
-                    <figure><img src="${pageContext.request.contextPath}/views/public/images/signin-image.jpg" alt="sign up image"></figure>
-                    <a href="${pageContext.request.contextPath}/views/register.jsp" class="signup-image-link">Chưa có tài khoản? Đăng ký.</a>
+                    <figure><img src="${pageContext.request.contextPath}/public/images/signin-image.jpg" alt="sign up image"></figure>
+                    <a href="${pageContext.request.contextPath}/sign-up" class="signup-image-link">Chưa có tài khoản? Đăng ký.</a>
                 </div>
 
                 <div class="signin-form">
@@ -83,8 +83,8 @@
 </div>
 
 <!-- JS -->
-<script src="${pageContext.request.contextPath}/views/public/vendor/jquery/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/views/public/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/public/vendor/jquery/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/public/js/main.js"></script>
 
 
 <!-- JS -->

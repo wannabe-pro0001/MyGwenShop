@@ -33,4 +33,9 @@ public class CartServiceImpl implements ICartService {
     public void update(Cart cart) {
         cartDao.update(cart);
     }
+
+    @Override
+    public int QuantityCount(int cartId) {
+        return 0;
+    }
 }

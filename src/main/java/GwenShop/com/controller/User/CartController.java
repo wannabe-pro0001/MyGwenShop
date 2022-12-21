@@ -33,14 +33,14 @@ public class CartController extends HttpServlet {
                 request.getRequestDispatcher("/views/user/cart.jsp").forward(request, response);
             }
         } else if (url.contains("checkout")) {
-            postCheckout(request, response);
+            getCheckout(request, response);
         } else if(url.contains("updateQuantity")) {
             updateQuantity(request, response);
         }
         else {
             findAll(request, response);
             if (!response.isCommitted()){
-                request.getRequestDispatcher("/views/user/cart.jsp").forward(request,response);
+                request.getRequestDispatcher("views/user/GioHang/giohang.jsp").forward(request, response);
             }
         }
     }
@@ -59,8 +59,16 @@ public class CartController extends HttpServlet {
 
     private void getCheckout(HttpServletRequest request, HttpServletResponse response) {
         try {
-            findAll(request, response);
-            request.getRequestDispatcher("/views/user/checkout.jsp").forward(request,response);
+            HttpSession session = request.getSession(true);
+            if (session.getAttribute("account") == null && !response.isCommitted()) {
+                response.sendRedirect(request.getContextPath() + "/login");
+            }
+            else {
+                Users userId = (Users) session.getAttribute("account");
+                Cart cart = cartService.findCartByUserId(userId.getId());
+                request.setAttribute("cartItem", cart.getCartItems());
+                request.getRequestDispatcher("/views/user/ThanhToan/thanhtoan.jsp").forward(request, response);
+            }
         } catch (ServletException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -77,9 +85,10 @@ public class CartController extends HttpServlet {
                 int userId = Integer.parseInt((String) session.getAttribute("userId"));
                 Users user = userService.findById(userId);
 
-                String fullName = request.getParameter("fullName");
-                String address = request.getParameter("address");
-                String phone = request.getParameter("phone");
+                String fullName = request.getParameter("billingName");
+                String address = request.getParameter("billingAddress");
+                String phone = request.getParameter("billingPhone");
+                String note = request.getParameter("note");
                 //int total = Integer.parseInt(request.getParameter("total"));
                 int total = 0;
                 Cart cart = cartService.findCartByUserId(userId);
@@ -143,11 +152,12 @@ public class CartController extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/login");
             }
             else {
-                int prodId = Integer.parseInt(request.getParameter("prodId"));
+                int prodId = Integer.parseInt(request.getParameter("productId"));
                 int userId = Integer.parseInt((String) session.getAttribute("userId"));
                 Cart userCart = cartService.findCartByUserId(userId);
                 Product product = productService.findProductById(prodId);
                 cartItemService.delete(new CartItemID(userCart, product));
+                response.sendRedirect(request.getContextPath() + "/cart");
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -181,11 +191,30 @@ public class CartController extends HttpServlet {
             else {
                 Users userId = (Users) session.getAttribute("account");
                 Cart cart = cartService.findCartByUserId(userId.getId());
-                request.setAttribute("cartItems", cart.getCartItems()); //Trả về giá trị cho view
+                request.setAttribute("cartItem", cart.getCartItems()); //Trả về giá trị cho view
+                request.getRequestDispatcher("/views/user/GioHang/giohang.jsp").forward(request,response);
             }
         } catch (Exception e){
             e.printStackTrace();
             request.setAttribute("msg", "Eror: " + e.getMessage());
         }
     }
+    private void findAllGet(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            HttpSession session = request.getSession(true);
+            if (session.getAttribute("account") == null && !response.isCommitted()) {
+                response.sendRedirect(request.getContextPath() + "/login");
+            }
+            else {
+                Users userId = (Users) session.getAttribute("account");
+                Cart cart = cartService.findCartByUserId(userId.getId());
+                request.setAttribute("cartItem", cart.getCartItems()); //Trả về giá trị cho view
+                request.getRequestDispatcher("/views/user/GioHang/giohang.jsp").forward(request,response);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            request.setAttribute("msg", "Eror: " + e.getMessage());
+        }
+    }
+
 }

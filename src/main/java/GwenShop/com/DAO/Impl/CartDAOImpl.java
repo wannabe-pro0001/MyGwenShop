@@ -10,8 +10,6 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class CartDAOImpl implements ICartDAO {
-
-
     @Override
     public boolean existCart(int userId) {
         EntityManager enma = JPAConfig.getEntityManager();
@@ -87,5 +85,10 @@ public class CartDAOImpl implements ICartDAO {
         finally {
             enma.close();
         }
+    }
+
+    @Override
+    public int QuantityCount(int cartId) {
+        return 0;
     }
 }

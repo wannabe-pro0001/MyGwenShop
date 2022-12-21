@@ -5,12 +5,12 @@ import GwenShop.com.entity.*;
 import java.util.List;
 
 public interface IUserService {
-    public void createAccount(Users user);
+    String createAccount(Users user);
     public void update(Users user);
     String update(Users user, String addr, String phoneNo, String fullName);
     public void delete(int userID);
 
-    String UpdatePasswd(Users user, String passwd);
+    String UpdatePasswd(Users user, String OldPass, String passwd);
     public List<Users> findAll();
     public Users findByEmail(String email);
     public List<Users> findUsersByName(String searchString);

@@ -11,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @WebServlet(urlPatterns = {"/login", "/sign-up", "/sign-out", "/waiting"})
 public class AuthController extends HttpServlet {
@@ -110,6 +112,7 @@ public class AuthController extends HttpServlet {
                         Users user = userService.findByEmail(cookie.getValue());
                         cookie.setMaxAge(5*60);
                         session.setAttribute("account", user);
+                        session.setAttribute("userId", (String.valueOf(user.getId())));
                         resp.sendRedirect(req.getContextPath() + "/waiting");
                         return;
                     }
@@ -149,14 +152,18 @@ public class AuthController extends HttpServlet {
 
             HashPassword pw = new HashPassword();
             user.setPasswd(pw.hash(passwd));
-            long millis=System.currentTimeMillis();
-            java.sql.Date date = new java.sql.Date(millis);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDateTime now = LocalDateTime.now();
+            user.setCreate_at(dtf.format(now));
+            //long millis=System.currentTimeMillis();
+            //java.sql.Date date = new java.sql.Date(millis);
+            //user.setCreate_at(date);
             // creating a new object of the class Date
             user.setRoles(0);
-            user.setCreate_at(date);
-            userService.createAccount(user);
-            req.setAttribute("announce", "Tạo tài khoản thành công");
-            req.getRequestDispatcher("views/login.jsp").forward(req, resp);
+
+            String msg = userService.createAccount(user);
+            req.setAttribute("announce", msg);
+            req.getRequestDispatcher("views/register.jsp").forward(req, resp);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -177,7 +184,7 @@ public class AuthController extends HttpServlet {
                     }
                 }
             }
-            resp.sendRedirect(req.getContextPath() + "/login");
+            resp.sendRedirect(req.getContextPath() + "/home");
         }
         catch (Exception e){
             e.printStackTrace();
@@ -189,14 +196,14 @@ public class AuthController extends HttpServlet {
             Users u = (Users) session.getAttribute("account");
             req.setAttribute("email", u.getFullName());
             if (u.getRoles() == 1) {
-                resp.sendRedirect(req.getContextPath() + "/admin/home");
+                resp.sendRedirect(req.getContextPath() + "/admin/employee");
             } else if (u.getRoles() == 2) {
                 resp.sendRedirect(req.getContextPath() + "/manager/home");
             } else {
-                req.getRequestDispatcher("/home.jsp");
+                resp.sendRedirect(req.getContextPath()+"/home");
             }
         } else {
-            resp.sendRedirect(req.getContextPath() + "/login");
+            resp.sendRedirect(req.getContextPath() + "/index.jsp");
         }
     }
     private void sendAlertMsg(HttpServletRequest req, HttpServletResponse resp, String msg) throws ServletException, IOException {

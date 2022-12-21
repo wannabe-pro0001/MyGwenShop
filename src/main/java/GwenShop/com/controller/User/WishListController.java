@@ -47,7 +47,7 @@ public class WishListController extends HttpServlet {
         HttpSession session = req.getSession();
         if (session != null && session.getAttribute("account") != null){
             Users user = (Users) session.getAttribute("account");
-            int productID = Integer.parseInt(req.getParameter("productID"));
+            int productID = Integer.parseInt(req.getParameter("productId"));
             Product product = productService.findProductById(productID);
 
             //Nhớ check WishList tồn tại hay chưa

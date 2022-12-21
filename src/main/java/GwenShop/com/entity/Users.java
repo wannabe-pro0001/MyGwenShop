@@ -37,7 +37,7 @@ public class Users implements Serializable {
     @Column(name = "roles")
     private int roles;
     @Column(name = "create_at")
-    private Date create_at;
+    private String create_at;
 
     //Tạo quan hệ
     @OneToOne(mappedBy = "user")
@@ -66,5 +66,11 @@ public class Users implements Serializable {
         blogs.forEach(blog -> blog.setEmp_id(null));
         orders.forEach(order -> order.setUser(null));
         VerifiedOrders.forEach(order -> order.setUser(null));
+    }
+
+    public String GetLastName(){
+        String name = fullName.trim();
+        name = name.replaceAll("\\s+", " ");
+        return name.substring(name.lastIndexOf(" ")+1);
     }
 }

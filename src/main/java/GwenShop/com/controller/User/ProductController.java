@@ -35,8 +35,12 @@ public class ProductController extends HttpServlet{
             addToCart(req, resp);
         } else if (url.contains("detail")) {
             ProductDetail(req, resp);
+            req.getRequestDispatcher("/views/user/ChiTietSanPham/chitietSP.jsp").forward(req, resp);
         } else{
             findAll(req, resp);
+        }
+        if (!resp.isCommitted()){
+            req.getRequestDispatcher("home.jsp").forward(req, resp);
         }
     }
 
@@ -86,8 +90,6 @@ public class ProductController extends HttpServlet{
             resp.setCharacterEncoding("UTF-8");
             List<Product> products = productService.findAll(0, 12);
             req.setAttribute("product", products);
-            RequestDispatcher rq = req.getRequestDispatcher("views/shop/product.jsp");
-            rq.forward(req,resp);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -100,7 +102,6 @@ public class ProductController extends HttpServlet{
             Product product = productService.findProductById(productID);
             if (product != null){
                 req.setAttribute("product", product);
-                resp.sendRedirect(req.getContextPath()+"/views/shop/productDetail.jsp");
             }
             else{
                 req.setAttribute("message", "Không tìm thấy sản phẩm, vui lòng thử lại sau");
