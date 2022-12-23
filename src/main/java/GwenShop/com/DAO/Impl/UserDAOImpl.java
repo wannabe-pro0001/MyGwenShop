@@ -52,6 +52,15 @@ public class UserDAOImpl implements IUserDAO {
     }
 
     @Override
+    public void updatePasswd(Users user) {
+        try{
+            update(user);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public List<Users> findAll() {
         EntityManager enma = JPAConfig.getEntityManager();
         EntityTransaction trans = enma.getTransaction();
@@ -156,13 +165,14 @@ public class UserDAOImpl implements IUserDAO {
     }
 
     @Override
-    public void removeReview(Review review) {
+    public void removeReview(int reviewID){
         EntityManager enma = JPAConfig.getEntityManager();
         EntityTransaction trans = enma.getTransaction();
 
         try{
             trans.begin();
-            if (enma.find(Review.class, review) != null){
+            Review review = enma.find(Review.class, reviewID);
+            if (review != null){
                 enma.remove(review);
             }
             trans.commit();

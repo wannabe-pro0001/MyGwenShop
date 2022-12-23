@@ -11,10 +11,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/views/public/css/management/base.css">
-    <link rel="stylesheet" href="/views/public/css/management/content.css">
-    <link rel="stylesheet" href="/views/public/css/management/order/content.css">
-    <link rel="stylesheet" href="/views/public/fontawesome-free-6.1.1-web/css/all.min.css">
+    <link rel="stylesheet" href="/views${pageContext.request.contextPath}/public/css/management/base.css">
+    <link rel="stylesheet" href="/views${pageContext.request.contextPath}/public/css/management/content.css">
+    <link rel="stylesheet" href="/views${pageContext.request.contextPath}/public/css/management/order/content.css">
+    <link rel="stylesheet" href="/views${pageContext.request.contextPath}/public/fontawesome-free-6.1.1-web/css/all.min.css">
     <title>order</title>
 </head>
 <body>
@@ -35,19 +35,21 @@
                             <option value="complete">Đã hoàn thành</option>
                         </select>
                     </div>
-                    <!-- <img src="/views/public/icon/icon_add.png" class="content__header--buttonAdd" alt="">  -->
+                    <!-- <img src="/views${pageContext.request.contextPath}/public/icon/icon_add.png" class="content__header--buttonAdd" alt="">  -->
                 </div>
             </div>
             <div class="table_wrapper">
                 <table class="table_order">
                 </table>
             </div>
+                <form action="" class="form_product-detail">
+
+                </form>
         </div>
     </div>
-    <script src="/views/public/js/OrderManagement/getElement.js"></script>
-    <script src="/views/public/js/main.js"></script>
-<%--    <script src="/views/public/js/OrderManagement/checkInfo.js"></script>--%>
-<%--    <script src="/views/public/js/OrderManagement/order.js"></script>--%>
+    <script src="${pageContext.request.contextPath}/public/js/management/Order/getElement.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/management/main.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/management/Order/order.js"></script>
 </div>
 </body>
 </html>

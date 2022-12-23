@@ -17,10 +17,8 @@
         <a href = "${pageContext.request.contextPath}/sign-out" for="sign-out" >Đăng xuất</a>
     </button>
 
-
     <thead>
         <tr>
-           <th></th>
             <th>ID</th>
             <th>Danh mục</th>
             <th>Tổng sản phẩm</th>
@@ -30,7 +28,6 @@
     <tbody>
         <c:forEach var="item" items="${cate}">
         <tr>
-            <td> <input type="checkbox"> </button>
             <td class="col__id-category">${item.getId()}</td>
             <td class="col__category-name">${item.getName()}</td>
             <td class="col__category-productAmount">${item.getDescription()}</td>

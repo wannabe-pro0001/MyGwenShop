@@ -15,7 +15,7 @@ public class CartServiceImpl implements ICartService {
     }
 
     @Override
-    public List<Cart> findCartByUserId(int userId) {
+    public Cart findCartByUserId(int userId) {
         return cartDao.findCartByUserId(userId);
     }
 
@@ -32,5 +32,10 @@ public class CartServiceImpl implements ICartService {
     @Override
     public void update(Cart cart) {
         cartDao.update(cart);
+    }
+
+    @Override
+    public int QuantityCount(int cartId) {
+        return 0;
     }
 }

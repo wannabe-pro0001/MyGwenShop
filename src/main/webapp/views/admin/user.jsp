@@ -5,13 +5,15 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/views/public/css/management/base.css">
-        <link rel="stylesheet" href="/views/public/css/management/content.css">
-        <link rel="stylesheet" href="/views/public/css/management/user/content.css">
-        <link rel="stylesheet" href="/views/public/fontawesome-free-6.1.1-web/css/all.min.css">
+
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/management/base.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/management/content.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/management/user/content.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/public/fontawesome-free-6.1.1-web/css/all.min.css">
         <title>GwenShop</title>
     </head>
     <body>
+
     <jsp:include page="header.jsp"></jsp:include>
     <div id="web_body">
         <jsp:include page="sidebar.jsp"></jsp:include>
@@ -22,9 +24,9 @@
                         <div class="search">
                             <input class="search--input" type="text" onkeypress="checkEnterClick(event)" placeholder="Nhập tên hoặc ID">
                         </div>
-                        <img src="/views/public/icon/icon_add.png" class="content__header--buttonAdd" alt=" ">
+                        <img src="${pageContext.request.contextPath}/public/icon/icon_add.png" class="content__header--buttonAdd" alt=" ">
                     </div>
-                    <img src="/views/public/icon/icon_wastebasket.png" class="content__header--buttonDel" alt="">
+                    <img src="${pageContext.request.contextPath}/public/icon/icon_wastebasket.png" class="content__header--buttonDel" alt="">
                 </div>
                 <div class="table_wrapper">
                     <table class="table_employee">
@@ -35,17 +37,17 @@
         </div>
         <div id = "inforMember">
             <form action="" method="post" class="form" id="form-infoMember">
-                <h3 class="heading">Thông tin User</h3>
+                <h3 class="heading">Thông tin nhân viên</h3>
                 <div class="spacer"></div>
                 <div class="" style="display: flex; justify-content: space-between;">
                     <div class="form-group">
-                        <label for="fullname" class="form-label">Tên đầy đủ</label>
-                        <input id="fullname" name="fullname" type="text" placeholder="VD: Nguyễn Văn A" class="form-control">
+                        <label for="fullName" class="form-label">Tên đầy đủ</label>
+                        <input id="fullName" name="fullName" type="text" placeholder="VD: Nguyễn Văn A" class="form-control">
                         <span class="form-message"></span>
                     </div>
                     <div class="form-group">
-                        <label for="phonenumber" class="form-label">Số điện thoại</label>
-                        <input id="phonenumber" name="phonenumber" placeholder="Nhập số điện thoại" type="text" class="form-control">
+                        <label for="phoneNumber" class="form-label">Số điện thoại</label>
+                        <input id="phoneNumber" name="phoneNumber" placeholder="Nhập số điện thoại" type="text" class="form-control">
                         <span class="form-message"></span>
                     </div>
                 </div>
@@ -55,30 +57,16 @@
                     <input id="email" name="email" type="text" placeholder="VD: email@domain.com" class="form-control">
                     <span class="form-message"></span>
                 </div>
-                <div class="form-group">
-                    <label for="password" class="form-label">Mật khẩu</label>
-                    <input id="password" name="passwd" type="text" placeholder="Nhập mật khẩu" class="form-control">
-                    <span class="form-message"></span>
-                </div>
+<%--                <div class="form-group">--%>
+<%--                    <label for="password" class="form-label">Mật khẩu</label>--%>
+<%--                    <input id="password" name="passwd" type="text" placeholder="Nhập mật khẩu" class="form-control">--%>
+<%--                    <span class="form-message"></span>--%>
+<%--                </div>--%>
 
                 <div class="form-group">
                     <label for="address" class="form-label">Địa chỉ</label>
                     <input id="address" name="addr" placeholder="Nhập địa chỉ" type="text" class="form-control">
                     <span class="form-message"></span>
-                </div>
-                <div class="section-forEmployee" style="display: flex;">
-                    <div class="form-group">
-                        <label for="salary" class="form-label">Lương</label>
-                        <input id="salary" name="salary" placeholder="Nhập mức lương" type="text" class="form-control">
-                        <span class="form-message"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="role" class="form-label">Chức vụ</label>
-                        <select id="role" name="role">
-                            <option value="Nhân viên">Nhân viên</option>
-                            <option value="Quản lý">Quản lý</option>
-                        </select>
-                    </div>
                 </div>
                 <div class="form-info--button">
                     <button class="btn_Delete" onclick="Submit('delete')">Xóa</button>
@@ -89,42 +77,28 @@
         </div>
     </div>
     <div id="toast"></div>
-    <script src="/views/public/js/UserManagement/getElement.js"></script>
-    <script src="/views/public/js/UserManagement/user.js"></script>
-    <script src="/views/public/js/main.js"></script>
-    <script src="/views/public/js/UserManagement/checkInfo.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/management/User/getElement.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/management/User/user.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/management/main.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/management/User/checkInfo.js"></script>
     <script>
-        let url = window.location.href;
         let option = {
-            form: '#form-infoMember',
+            form: '#inforMember',
             formGroupSelector: '.form-group',
             errorSelector: '.form-message',
             rules: [
-                Validator.isRequired(document.getElementById('fullname'),  'Tên không chứa ký tự đăc biệt và số'),
+                Validator.isRequired(document.getElementById('fullName'),  'Tên không chứa ký tự đăc biệt và số'),
                 Validator.isEmail(document.getElementById('email'), 'Nhập lại địa chỉ email'),
                 Validator.minLength(document.getElementById('password'), 8, 15),
-                Validator.isPhoneNumber(document.getElementById('phonenumber'), 'phải đủ 10 số'),
-                Validator.isAddress(document.getElementById('address'),'nhập lại địa chỉ'),
-                Validator.isSalary(document.getElementById('salary'), 'nhập lại mức lương')],
+                Validator.isPhoneNumber(document.getElementById('phoneNumber'), 'phải đủ 10 số'),
+                Validator.isAddress(document.getElementById('address'),'nhập lại địa chỉ')]
         };
-        if(url.includes('customer')){
-            document.querySelector(".section-forEmployee").style.display = "none";
-            option = {
-                form: '#form-infoMember',
-                formGroupSelector: '.form-group',
-                errorSelector: '.form-message',
-                rules: [
-                    Validator.isRequired(document.getElementById('fullname'),  'Tên không chứa ký tự đăc biệt và số'),
-                    Validator.isEmail(document.getElementById('email'), 'Nhập lại địa chỉ email'),
-                    Validator.minLength(document.getElementById('password'), 8, 15),
-                    Validator.isPhoneNumber(document.getElementById('phonenumber'), 'phải đủ 10 số'),
-                    Validator.isAddress(document.getElementById('address'),'nhập lại địa chỉ')]
-            };
-        }
         Validator(option);
         function Submit(action){
-            checkSubmit(option, action);
+            checkSubmit(option, action)
         }
     </script>
     </body>
 </html>
+
+

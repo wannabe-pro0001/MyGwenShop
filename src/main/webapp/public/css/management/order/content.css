@@ -1,0 +1,126 @@
+.table_order  .btn_ShowInfo_Order,
+.table_order  .btn_Delete
+{
+    border-radius: 4px;
+    padding: 1rem 1.5rem;
+    margin-left: 0.2rem;
+}
+.table_order  .btn_ShowInfo_Order{
+    background-color: green;
+    border: 1px solid green;
+}
+.table_order  .btn_Delete{
+    border: 1px solid red;
+}
+.table_wrapper table td:last-child{
+    width: 12rem;
+}
+
+/* FILTER STATUS */
+.filter_status .select_order-status{
+    border-radius: 4px;
+    margin-left: 1rem;
+    outline: none;
+    border: none;
+}
+.filter_status .select_order-status option{
+    border: none;
+}
+/* STATUS IN TABLE */
+.table_order td[name=status] {
+    width: 12rem;
+}
+.table_order td[name=status] div{
+    padding: 1rem;
+    text-align: center;
+    border-radius: 8px;
+}
+.table_order td[name=status] .status_complete{
+    background-color: aquamarine;
+    color: green;
+}
+
+.table_order td[name=status] .status_untreated{
+    background-color: #f4a5b2;
+    color: red;
+}
+.table_order td[name=status] .status_processing{
+    background-color: #edf0b1;
+    color: rgb(255, 157, 0);
+}
+.table_order td[name=status] div i{
+    margin-right: 0.2rem;
+}
+
+.form_product-detail{
+    z-index: 999;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    background-color: #edf1f5;
+    color: black;
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+.form_product-detail .row{
+    display: flex;
+    height: 15rem;
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid silver;
+}
+.form_product-detail .row div{
+    width: 20rem;
+}
+.form_product-detail .row .image{
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+.form_product-detail .row .Info{
+    display: flex;
+}
+.form_product-detail .row .Info div{
+    margin: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+}
+.form_product-detail .row .Info span{
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+}
+.form_product-detail .row .amount{
+    display: flex;
+}
+.form_product-detail .row .amount span{
+    margin: auto;
+}
+.form_product-detail .row .Info span:first-child{
+    margin-bottom: 7px;
+    font-weight: 750;
+    color: #3b7079;
+}
+.form_product-detail .row .price{
+    display: flex;
+}
+.form_product-detail .row .price span{
+    margin: auto;
+}
+
+.form_product-detail .status{
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.form_product-detail select{
+    margin-top: 1rem;
+    padding: 0.5rem;
+    outline: none;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px silver;
+}

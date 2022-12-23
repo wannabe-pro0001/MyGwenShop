@@ -8,7 +8,7 @@ public interface IUserDAO {
     public void createAccount(Users user);
     public void update(Users user);
     public void delete(int userID);
-
+    void updatePasswd(Users user);
     public List<Users> findAll();
     public Users findByEmail(String email);
     public List<Users> findUsersByName(String searchString);
@@ -16,6 +16,6 @@ public interface IUserDAO {
     public void addWishList(WishListItem item);
     public void removeWishList(WishListItem item);
     public void addReview(Review review);
-    public void removeReview(Review review);
+    public void removeReview(int reviewID);
     public String checkDelivery(Order order);
 }

@@ -56,5 +56,4 @@ public class Review implements Serializable {
         this.product.setReviews(reviews);
         return this;
     }
-
 }

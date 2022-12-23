@@ -15,10 +15,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Font Icon -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/public/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/fonts/material-icon/css/material-design-iconic-font.min.css">
 
     <!-- Main css -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/public/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/style.css">
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -51,7 +51,7 @@
                         </div>
                         <div class="form-group">
                             <label for="fullName"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="fullname" id="fullname" placeholder="Họ tên của bạn" required>
+                            <input type="text" name="fullName" id="fullName" placeholder="Họ tên của bạn" required>
                         </div>
                         <div class="form-group">
                             <label for="phoneNo"><i class="zmdi zmdi-phone material-icons-name"></i></label>
@@ -75,7 +75,7 @@
                     </form>
                 </div>
                 <div class="signup-image">
-                    <figure><img src="${pageContext.request.contextPath}/views/public/images/signup-image.jpg" alt="sing up image"></figure>
+                    <figure><img src="${pageContext.request.contextPath}/public/images/signup-image.jpg" alt="sing up image"></figure>
                     <a href="${pageContext.request.contextPath}/login" class="signup-image-link">Tôi đã có tài khoản</a>
                 </div>
             </div>
@@ -84,8 +84,8 @@
 </div>
 
 <!-- JS -->
-<script src="${pageContext.request.contextPath}/views/public/vendor/jquery/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/views/public/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/public/vendor/jquery/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/public/js/main.js"></script>
 
 <!-- JS -->
 <script src="//code.jquery.com/jquery-3.2.1.slim.min.js"

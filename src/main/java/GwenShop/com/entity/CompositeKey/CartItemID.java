@@ -1,6 +1,7 @@
 package GwenShop.com.entity.CompositeKey;
 
 import GwenShop.com.entity.Cart;
+import GwenShop.com.entity.CartItem;
 import GwenShop.com.entity.Product;
 import lombok.NoArgsConstructor;
 
@@ -13,9 +14,9 @@ public class CartItemID implements Serializable {
     private Product product;
 
     //Constructor
-    public CartItemID(Cart cartID, Product prodID){
-        this.cart = cartID;
-        this.product = prodID;
+    public CartItemID(Cart cart, Product prod){
+        this.cart = cart;
+        this.product = prod;
     }
 
     //equal hash code
