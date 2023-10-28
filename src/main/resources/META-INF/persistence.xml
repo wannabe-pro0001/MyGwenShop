@@ -15,16 +15,31 @@
         <class>GwenShop.com.DAO.Impl.ProductDAOImpl</class>
         <class>GwenShop.com.DAO.Impl.UserDAOImpl</class>
         <class>GwenShop.com.DAO.Impl.WishListDAOImpl</class>
+
+        <!--   Ms sql    -->
+<!--        <properties>-->
+<!--            <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=MyGwenShop" />&lt;!&ndash; user=sa;password=1234567@a$ &ndash;&gt;-->
+<!--            <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />-->
+<!--            <property name="javax.persistence.jdbc.user" value="sa" />-->
+<!--            <property name="javax.persistence.jdbc.password" value="123456" />-->
+<!--            <property name="hibernate.show_sql" value="true" />-->
+<!--            <property name="hibernate.format_sql" value="true" />-->
+<!--            <property name="hibernate.ddl-auto" value="update" />-->
+<!--            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"></property>-->
+<!--            <property name="hibernate.hbm2ddl.auto" value="update" />-->
+<!--        </properties>-->
+
+        <!--    MySql     -->
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=MyGwenShop" /><!-- user=sa;password=1234567@a$ -->
-            <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-            <property name="javax.persistence.jdbc.user" value="sa" />
-            <property name="javax.persistence.jdbc.password" value="123456" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gwenshop"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="Pentakills5"/>
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
-            <property name="hibernate.ddl-auto" value="update" />
-            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"></property>
-            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.ddl-auto" value="update"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
         </properties>
     </persistence-unit>
 </persistence>

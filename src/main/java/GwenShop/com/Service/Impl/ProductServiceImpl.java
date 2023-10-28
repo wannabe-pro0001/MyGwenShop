@@ -6,6 +6,7 @@ import GwenShop.com.DAO.Impl.ProductDAOImpl;
 import GwenShop.com.Service.IProductService;
 import GwenShop.com.entity.Product;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 
@@ -30,5 +31,19 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public Product findProductById(int prodId) {
         return productDao.findProductById(prodId);
+    }
+
+    @Override
+    public List<String> findProductImages(int productId) {
+        return productDao.findProductImages(productId);
+    }
+    public void Insert(EntityManager entityManager, Product product, String[] images){
+        productDao.Insert(entityManager, product, images);
+    }
+    public void update(Product product, String[] ImageList){
+        productDao.update(product, ImageList);
+    };
+    public void delete(EntityManager entityManager, int idProd){
+        productDao.delete(entityManager, idProd);
     }
 }

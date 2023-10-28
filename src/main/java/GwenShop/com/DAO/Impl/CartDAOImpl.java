@@ -10,12 +10,11 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class CartDAOImpl implements ICartDAO {
-    private EntityManager enma = JPAConfig.getEntityManager();
-    private EntityTransaction trans = enma.getTransaction();
-
     @Override
     public boolean existCart(int userId) {
-        boolean isCart = enma.createQuery("FROM Cart C WHERE C.users.id = :userId")
+        EntityManager enma = JPAConfig.getEntityManager();
+        EntityTransaction trans = enma.getTransaction();
+        boolean isCart = enma.createQuery("FROM Cart C WHERE C.user.id = :userId")
                 .setParameter("userId", userId)
                 .getResultList()
                 .size() > 0 ? true : false;
@@ -23,15 +22,17 @@ public class CartDAOImpl implements ICartDAO {
     }
 
     @Override
-    public List<Cart> findCartByUserId(int userId) {
-        String jpql = "SELECT c FROM Cart c WHERE c.userId = :id";
-        TypedQuery<Cart> query= enma.createQuery(jpql, Cart.class);
-        query.setParameter("id", userId);
-        return query.getResultList();
+    public Cart findCartByUserId(int userId) {
+        EntityManager enma = JPAConfig.getEntityManager();
+        EntityTransaction trans = enma.getTransaction();
+        Cart cart = (Cart) enma.createQuery("SELECT c FROM Cart c WHERE c.user.id = :id", Cart.class).setParameter("id", userId).getSingleResult();
+        return cart;
     }
 
     @Override
     public void insert(Cart cart) {
+        EntityManager enma = JPAConfig.getEntityManager();
+        EntityTransaction trans = enma.getTransaction();
         try {
             trans.begin();
             enma.persist(cart);
@@ -47,6 +48,8 @@ public class CartDAOImpl implements ICartDAO {
 
     @Override
     public void delete(int cartId) throws Exception {
+        EntityManager enma = JPAConfig.getEntityManager();
+        EntityTransaction trans = enma.getTransaction();
         try {
             trans.begin();
             Cart cart = enma.find(Cart.class, cartId);
@@ -67,6 +70,8 @@ public class CartDAOImpl implements ICartDAO {
 
     @Override
     public void update(Cart cart) {
+        EntityManager enma = JPAConfig.getEntityManager();
+        EntityTransaction trans = enma.getTransaction();
         try{
             trans.begin();
             enma.merge(cart);
@@ -80,5 +85,10 @@ public class CartDAOImpl implements ICartDAO {
         finally {
             enma.close();
         }
+    }
+
+    @Override
+    public int QuantityCount(int cartId) {
+        return 0;
     }
 }

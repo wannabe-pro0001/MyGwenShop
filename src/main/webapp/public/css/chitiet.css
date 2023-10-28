@@ -1,0 +1,203 @@
+.header
+{
+    background-color: rgb(12, 55, 52);
+}
+.logo
+{
+    height: 50px;
+    width: 50px;
+}
+.navbar{
+    align-items: center;
+}
+.navbar-nav .nav-item .nav-link
+{
+    padding: 8px 24px;
+    color: #e5dfdf;
+    font-size: 20px;
+}
+
+.user
+{
+    font-size: 20px;
+    color: #ffffff;
+    padding: 5px;
+}
+
+.than
+{
+    padding: 0px 0px 100px;
+}
+
+.khung
+{
+    position: absolute;
+    width: 1250px;
+    height: 180px;
+    background-color: rgb(231, 212, 197);
+    top: 525px;
+    display: flex;
+    left: 150px;
+    padding: 15px;
+}
+.khoi{
+    color:#306c60;
+    text-align: center;
+    padding: 0 10px;
+}
+.khoi>p{
+    font-size: 14px;
+    padding-top: 10px;
+}
+
+.logo_khung
+{
+    font-size: 40px;
+    color: #306c60;
+    padding: 5px;
+}
+.container
+{
+    max-width:1200px;
+}
+.row
+{
+    display: flex;
+}
+.bread-crumb{
+    color:#a2a2a2;
+}
+.bread-crumb, .bread-crumb .breadcrumb {
+    background: #F6F6F6;
+}
+.bread-crumb span{
+    font-weight: normal;
+    font-size: 14px;
+}
+.bread-crumb strong {
+    color: black;
+}
+.footer
+{
+    background-color: #122c27;
+}
+
+.text_footer
+{
+    color: #ffffff;
+    padding: 5px 10px;
+}
+
+.footer_title
+{
+    font-size: 16px;
+    margin-bottom: 16px;
+    color:#ffffff
+}
+.footer_block
+{
+    padding: 80px 0;
+}
+.list_menu
+{
+    list-style: none;
+    padding: 0px;
+    text-decoration: none;
+}
+.link{
+    color:#ffffff
+}
+.home .link{
+    color:#ded9d9
+}
+
+.follow_option
+{
+    display: flex;
+    padding: 5px 3px;
+    gap: 15px;
+    height: 45px;
+    line-height: 33px;
+    border-radius: 6px;
+    align-items: center;
+    list-style: none;
+}
+.icon
+{
+    padding: 2px;
+}
+.bank
+{
+    margin-top: 24px;
+}
+
+.col-lg-15 {
+    max-width: 25%;
+    flex: 0 0 25%;
+}
+
+.block-account p{
+    margin-bottom: 28px;
+}
+
+.block-account{
+    border-right: 2px solid #f4f4f4;
+}
+.block-account .title-account {
+    font-size: 19px;
+    font-weight: 400;
+    color: #212b25;
+    margin-bottom: 7px;
+    text-transform: uppercase;
+}
+
+.noidungInfo {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    color: black;
+}
+.noidungInfo_active{
+    color:#cd6420;
+}
+
+.noidung1_1 {
+    list-style: none;
+    display: list-item;
+    margin-bottom: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    padding-left: 0;
+}
+
+.title_Chinh {
+    text-transform: uppercase;
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+
+.noidung1_1 > li > a {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    list-style: none;
+    text-decoration: none;
+    display: block;
+}
+
+.noidung1_1 > li > a:hover {
+    color: red;
+    font-size: 15px;
+}
+
+.col-lg-9 {
+    max-width: 75%;
+    flex: 0 0 75%;
+}
+
+h1, .title-head {
+    font-size: 19px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #212b25;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
